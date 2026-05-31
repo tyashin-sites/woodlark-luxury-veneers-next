@@ -1,5 +1,6 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -18,7 +19,6 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   twitter: { card: 'summary_large_image' },
-  themeColor: '#1a120c',
   // Block crawlers during the workers.dev canary window. Flip
   // ROBOTS_NOINDEX=false on the production cutover deploy.
   robots:
@@ -26,6 +26,24 @@ export const metadata: Metadata = {
       ? { index: false, follow: false, googleBot: { index: false, follow: false } }
       : undefined,
 };
+
+export const viewport: Viewport = {
+  themeColor: '#1a120c',
+};
+
+const displayFont = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-display-next',
+  display: 'swap',
+});
+
+const bodyFont = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-sans-next',
+  display: 'swap',
+});
 
 const orgJsonLd = {
   '@context': 'https://schema.org',
@@ -47,7 +65,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <head>
         {/* Platform brand kit — wins last so admin tweaks override base palette */}
         <link rel="stylesheet" href="/brand-kit.css" />

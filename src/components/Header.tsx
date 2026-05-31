@@ -2,11 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
   return (
     <header className="sticky top-0 z-40 w-full bg-background/85 backdrop-blur-md border-b border-border/60">
       <div className="container-x flex items-center justify-between h-16 md:h-20">
@@ -28,7 +32,9 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs uppercase tracking-[0.25em] text-walnut-deep/80 hover:text-brass transition-colors"
+              className={`text-xs uppercase tracking-[0.25em] transition-colors ${
+                isActive(item.href) ? 'text-brass' : 'text-walnut-deep/80 hover:text-brass'
+              }`}
             >
               {item.label}
             </Link>
