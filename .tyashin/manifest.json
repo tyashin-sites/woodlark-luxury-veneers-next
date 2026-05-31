@@ -1,0 +1,20 @@
+{
+  "projectId": "6a1c9aa66933b758bf066427",
+  "slug": "varun-website-mpu8jd7d",
+  "siteName": "Woodlark — Recon Veneer",
+  "framework": "nextjs",
+  "domain": "woodlark.com",
+  "ownsRoutes": [
+    "/",
+    "/about",
+    "/collection",
+    "/contact",
+    "/products/[slug]"
+  ],
+  "tyashinOwnedRoutes": [
+    "/brand-kit.css",
+    "/tyashin-runtime.js",
+    "/sitemap.xml",
+    "/robots.txt"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "site-woodlark-luxury-veneers-next",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "f54895e0d1af4b0ab67cd8220664e91c"
+    }
+  ],
+  "vars": {
+    "TYASHIN_API_URL": "https://website-api.tyashin.com",
+    "TYASHIN_STOREFRONT_URL": "https://website-api.tyashin.com/api/v1/public/ecommerce",
+    "PROJECT_ID": "6a1c9aa66933b758bf066427",
+    "SITE_DOMAIN": "woodlark.com",
+    "ROBOTS_NOINDEX": "true"
+  }
+}

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Woodlark — Luxury veneer brand design system.
+ * Palette derived from rich walnut, warm caramel, antique brass and cream linen.
+ * Ported verbatim from the Lovable repo so the converted site reads identically.
+ */
+:root {
+  --radius: 0.25rem;
+
+  --cream: oklch(0.965 0.012 80);
+  --walnut: oklch(0.32 0.05 45);
+  --walnut-deep: oklch(0.18 0.03 40);
+  --brass: oklch(0.68 0.115 75);
+  --caramel: oklch(0.55 0.09 50);
+  --bark: oklch(0.42 0.06 45);
+  --maroon: oklch(0.42 0.13 22);
+  --maroon-deep: oklch(0.34 0.12 22);
+  --whatsapp: oklch(0.62 0.16 145);
+
+  --background: var(--cream);
+  --foreground: var(--walnut-deep);
+  --card: oklch(0.98 0.008 80);
+  --card-foreground: var(--walnut-deep);
+  --popover: var(--card);
+  --popover-foreground: var(--walnut-deep);
+  --primary: var(--maroon);
+  --primary-foreground: var(--cream);
+  --secondary: oklch(0.92 0.015 75);
+  --secondary-foreground: var(--walnut-deep);
+  --muted: oklch(0.93 0.012 75);
+  --muted-foreground: oklch(0.45 0.025 50);
+  --accent: var(--brass);
+  --accent-foreground: var(--walnut-deep);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.86 0.018 70);
+  --input: oklch(0.88 0.015 70);
+  --ring: var(--brass);
+
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5 { font-family: var(--font-display); }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1440px] px-5 md:px-10; }
+}
+
+.text-balance { text-wrap: balance; }
