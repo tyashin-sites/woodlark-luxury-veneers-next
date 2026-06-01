@@ -4,7 +4,14 @@ import { ProductSearch } from '@/components/ProductSearch';
 import { listProducts, listCategories, toView } from '@/lib/api';
 import { siteUrl } from '@/lib/site';
 
-export const revalidate = 60;
+// SSR at request time, not at build time. The page fetches /products + /categories
+// from the Tyashin API which requires TYASHIN_API_KEY — that key is injected as
+// a Worker runtime secret but isn't available to `next build` on the GitHub
+// runner. Until the platform-side patch in `generateDeployWorkflow` lands
+// (exposing envSecrets via $GITHUB_ENV before build), prerendering this page
+// 401s. `force-dynamic` switches it to render on each request, where Worker env
+// is available. Can revert to `revalidate` once the platform patch ships.
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'The Collection — Woodlark Recon Veneer',
