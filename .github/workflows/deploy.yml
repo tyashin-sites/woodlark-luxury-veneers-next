@@ -1,30 +1,82 @@
-name: Deploy Worker
-
+name: Deploy to Cloudflare Workers
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - run: npm ci
-      - name: Build
-        env:
-          TYASHIN_API_KEY: ${{ secrets.TYASHIN_API_KEY }}
-          TYASHIN_API_URL: https://website-api.tyashin.com
-          TYASHIN_STOREFRONT_URL: https://website-api.tyashin.com/api/v1/public/ecommerce
-          PROJECT_ID: 6a1c9aa66933b758bf066427
-          SITE_DOMAIN: woodlark.com
-          ROBOTS_NOINDEX: 'true'
+          # Wrangler 4.94+ requires Node 22+. Earlier deploy.yml files baked
+          # in node-version: "20" and silently broke when wrangler bumped its
+          # engines field. Keep this in sync with Cloudflare's wrangler minimum.
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with OpenNext
         run: npx @opennextjs/cloudflare build
-      - name: Deploy
+
+      - name: Deploy to Workers
+        id: deploy
+        run: npx wrangler deploy
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx @opennextjs/cloudflare deploy
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Set Worker secrets
+        if: steps.deploy.outcome == 'success'
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          # Fetch project env secrets from Tyashin API
+          SECRETS_JSON=$(curl -sS "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/secrets/${{ github.repository }}" \
+            -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}")
+
+          # Set each secret via wrangler (secrets take effect immediately, no redeploy needed)
+          echo "$SECRETS_JSON" | node -e "
+            const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+            if (data.success && data.data) {
+              for (const [key, val] of Object.entries(data.data)) {
+                const { execSync } = require('child_process');
+                execSync('echo ' + JSON.stringify(val) + ' | npx wrangler secret put ' + key, { stdio: 'pipe' });
+                console.log('Set secret: ' + key);
+              }
+            }
+          "
+
+      - name: Notify Tyashin (success)
+        if: success()
+        run: |
+          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/webhook" \
+            -H "Content-Type: application/json" \
+            -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}" \
+            -d '{
+              "repo": "${{ github.repository }}",
+              "commit_sha": "${{ github.sha }}",
+              "status": "success",
+              "run_id": "${{ github.run_id }}"
+            }'
+
+      - name: Notify Tyashin (failure)
+        if: failure()
+        run: |
+          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/webhook" \
+            -H "Content-Type: application/json" \
+            -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}" \
+            -d '{
+              "repo": "${{ github.repository }}",
+              "commit_sha": "${{ github.sha }}",
+              "status": "failed",
+              "run_id": "${{ github.run_id }}",
+              "error": "Build failed — see https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }'
