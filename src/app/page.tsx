@@ -8,10 +8,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { listProducts, listCategories, toView } from '@/lib/api';
 import { siteConfig, siteUrl } from '@/lib/site';
 
-// SSR at request time — RSC fetches need TYASHIN_API_KEY which isn't in the
-// GitHub Actions build env (only as a runtime Worker secret). Revert once the
-// platform-side `generateDeployWorkflow` patch ships envSecrets to $GITHUB_ENV.
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Luxury Recon Veneer | Billionply, Delhi',

@@ -6,8 +6,7 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { getProductBySlug, listProducts, listCategories, toView } from '@/lib/api';
 import { siteConfig, siteUrl } from '@/lib/site';
 
-// SSR at request time — see /collection page.tsx for context.
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 type Params = { params: Promise<{ slug: string }> };
 
