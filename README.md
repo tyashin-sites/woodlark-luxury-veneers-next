@@ -19,7 +19,7 @@ TYASHIN_API_KEY="ak_..." \
 TYASHIN_API_URL="https://website-api.tyashin.com" \
 TYASHIN_STOREFRONT_URL="https://website-api.tyashin.com/api/v1/public/ecommerce" \
 PROJECT_ID="6a1c9aa66933b758bf066427" \
-SITE_DOMAIN="woodlark.com" \
+SITE_DOMAIN="woodlarkveneer.com" \
 ROBOTS_NOINDEX="true" \
   npx @opennextjs/cloudflare build
 
@@ -43,7 +43,7 @@ curl -X PATCH "https://website-api.tyashin.com/api/v1/projects/6a1c9aa66933b758b
 # 2. Point hostnames at this Worker
 curl -X PUT "https://website-api.tyashin.com/api/v1/projects/6a1c9aa66933b758bf066427/experimental-deployment" \
   -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" \
-  -d '{"scriptName":"site-woodlark-luxury-veneers-next","hostnames":["www.woodlark.com","woodlark.com"],"label":"v1-production"}'
+  -d '{"scriptName":"site-woodlark-luxury-veneers-next","hostnames":["www.woodlarkveneer.com","woodlarkveneer.com"],"label":"v1-production"}'
 ```
 
 ## One-curl rollback

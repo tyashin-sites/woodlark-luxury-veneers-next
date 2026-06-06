@@ -3,7 +3,7 @@
   "slug": "varun-website-mpu8jd7d",
   "siteName": "Woodlark — Hybrid Veneer",
   "framework": "nextjs",
-  "domain": "woodlark.com",
+  "domain": "woodlarkveneer.com",
   "ownsRoutes": [
     "/",
     "/about",

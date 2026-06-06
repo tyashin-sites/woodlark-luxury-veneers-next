@@ -15,7 +15,7 @@ const nextConfig = {
       process.env.TYASHIN_STOREFRONT_URL ||
       'https://website-api.tyashin.com/api/v1/public/ecommerce',
     NEXT_PUBLIC_PROJECT_ID: process.env.PROJECT_ID || '6a1c9aa66933b758bf066427',
-    NEXT_PUBLIC_SITE_DOMAIN: process.env.SITE_DOMAIN || 'woodlark.com',
+    NEXT_PUBLIC_SITE_DOMAIN: process.env.SITE_DOMAIN || 'woodlarkveneer.com',
   },
   // Rewrites only fire on direct *.workers.dev access — in production the
   // Tyashin dispatch intercepts these paths before the Worker is invoked.
