@@ -23,7 +23,7 @@ export function Header() {
             className="h-12 md:h-14 w-auto mix-blend-multiply"
           />
           <span className="hidden md:inline text-[10px] uppercase tracking-[0.3em] text-muted-foreground border-l border-border pl-3">
-            Recon Veneer
+            Hybrid Veneer
           </span>
         </Link>
 

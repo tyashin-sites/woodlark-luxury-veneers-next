@@ -11,9 +11,9 @@ import { siteConfig, siteUrl } from '@/lib/site';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Luxury Recon Veneer | Billionply, Delhi',
+  title: 'Luxury Hybrid Veneer | Woodlark, Delhi',
   description:
-    'Woodlark · Recon Veneer from the house of Billionply. Italian excellence in hybrid veneer — consistent, project-scale, crafted for bold modern interiors.',
+    'Woodlark hybrid veneer — Italian excellence, consistent at project scale, crafted for bold modern interiors.',
   alternates: { canonical: siteUrl('/') },
   openGraph: { url: siteUrl('/'), images: [siteConfig.ogImage] },
 };
@@ -29,14 +29,14 @@ export default async function HomePage() {
         <HeroCarousel />
         <div className="container-x relative pb-20 pt-32 md:pb-28 md:pt-40">
           <div className="text-[11px] uppercase tracking-[0.4em] text-brass mb-6">
-            Recon Veneer · From the house of Billionply
+            Hybrid Veneer
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] text-cream max-w-4xl text-balance">
             Embracing Italian excellence,<br />
             <em className="text-brass not-italic font-light">crafted for the bold.</em>
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-cream/80 leading-relaxed">
-            Discover the {siteConfig.name} collection — hybrid recon veneer that redefines performance and style, sheet after consistent sheet.
+            Discover the {siteConfig.name} collection — hybrid veneer that redefines performance and style, sheet after consistent sheet.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
             <Link

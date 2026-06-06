@@ -51,7 +51,7 @@ export function Footer() {
 
       <div className="border-t border-cream/10">
         <div className="container-x py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] uppercase tracking-[0.25em] text-cream/50">
-          <span>© {new Date().getFullYear()} Woodlark · Billionply</span>
+          <span>© {new Date().getFullYear()} Woodlark</span>
           <span>Designed in Delhi · Crafted for the bold</span>
         </div>
       </div>

@@ -8,13 +8,13 @@ import { siteConfig, siteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl('/')),
-  title: { default: 'Woodlark — Recon Veneer from Billionply', template: '%s · Woodlark' },
-  description: `${siteConfig.tagline}. Italian excellence in hybrid recon veneer, crafted in India for architects, designers and bold homes.`,
-  authors: [{ name: 'Woodlark · Billionply' }],
+  title: { default: 'Woodlark — Hybrid Veneer', template: '%s · Woodlark' },
+  description: `${siteConfig.tagline}. Italian excellence in hybrid veneer, crafted in India for architects, designers and bold homes.`,
+  authors: [{ name: 'Woodlark' }],
   openGraph: {
     type: 'website',
     siteName: 'Woodlark',
-    title: 'Woodlark — Recon Veneer',
+    title: 'Woodlark — Hybrid Veneer',
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -49,7 +49,6 @@ const orgJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Woodlark',
-  alternateName: 'Woodlark by Billionply',
   url: siteUrl('/'),
   email: siteConfig.email,
   telephone: `+${siteConfig.whatsappNumber}`,

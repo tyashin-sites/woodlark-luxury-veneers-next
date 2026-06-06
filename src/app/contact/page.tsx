@@ -6,7 +6,7 @@ import { siteConfig, siteUrl } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Contact Woodlark — Samples, Pricing & Projects',
   description:
-    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 91388 80121 · sales@billionply.com.',
+    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 91388 80121 · sales@woodlarkveneer.com.',
   alternates: { canonical: siteUrl('/contact') },
 };
 

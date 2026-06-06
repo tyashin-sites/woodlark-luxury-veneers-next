@@ -1,5 +1,5 @@
 const usps = [
-  { n: '01', title: 'Consistency in every sheet',  body: 'Recon engineering means the swatch you specify is the wall you receive — sheet after sheet, project after project.' },
+  { n: '01', title: 'Consistency in every sheet',  body: 'Hybrid veneer engineering means the swatch you specify is the wall you receive — sheet after sheet, project after project.' },
   { n: '02', title: 'Built for project scale',     body: 'Hotels, residences, retail roll-outs — the same veneer, available again next month and the month after.' },
   { n: '03', title: 'Cost-effective by design',    body: 'Premium aesthetics without natural-veneer volatility. More design choice, more predictable budgets.' },
   { n: '04', title: 'Made for modern interiors',   body: 'A curated palette of tones — from bleached ash to fumed eucalyptus — engineered for contemporary architecture.' },

@@ -7,9 +7,9 @@ import { siteUrl } from '@/lib/site';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'The Collection — Woodlark Recon Veneer',
+  title: 'The Collection — Woodlark Hybrid Veneer',
   description:
-    'Browse the full Woodlark recon veneer collection — curated tones from Bleached Ash to Fumed Eucalyptus, engineered for consistency at project scale.',
+    'Browse the full Woodlark hybrid veneer collection — curated tones from Bleached Ash to Fumed Eucalyptus, engineered for consistency at project scale.',
   alternates: { canonical: siteUrl('/collection') },
 };
 
