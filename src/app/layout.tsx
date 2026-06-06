@@ -64,13 +64,23 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
+    // PERF: inline the cream base background (#F8F3EB, the resolved value of
+    // --background ≈ oklch(0.965 0.012 80)) on <html>/<body> so the theme paints
+    // on the first frame — no white-flash filmstrip frames inflating Speed Index.
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${bodyFont.variable}`}
+      style={{ backgroundColor: '#F8F3EB' }}
+    >
       <head>
-        {/* Platform brand kit — wins last so admin tweaks override base palette */}
-        <link rel="stylesheet" href="/brand-kit.css" />
+        {/* Brand kit is NOT linked here — the Tyashin dispatch layer INLINES it
+            as a <style> on customer hosts (no render-blocking request). Adding a
+            <link href="/brand-kit.css"> would re-introduce a render-blocking
+            resource AND suppress the platform inline (which keys off the link's
+            absence). */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </head>
-      <body>
+      <body className="overflow-x-clip" style={{ backgroundColor: '#F8F3EB' }}>
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>
