@@ -25,7 +25,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[92vh] flex flex-col justify-end overflow-hidden">
+      <section className="relative isolate min-h-[92vh] flex flex-col justify-end overflow-hidden">
         <HeroCarousel />
         <div className="container-x relative pb-20 pt-32 md:pb-28 md:pt-40">
           <div className="text-[11px] uppercase tracking-[0.4em] text-brass mb-6">
