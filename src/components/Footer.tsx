@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { siteConfig, whatsappLink } from '@/lib/site';
 
-export function Footer() {
+export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
   const a = siteConfig.address;
   return (
     <footer className="bg-walnut-deep text-cream/90 mt-24">
@@ -23,6 +23,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            {blogHasPosts && (
+              <li>
+                {/* Full-document <a> → fresh SSR /blog load. Gated on posts. */}
+                <a href="/blog" className="hover:text-brass transition-colors">
+                  Journal
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 

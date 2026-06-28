@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
 
-export function Header() {
+export function Header({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) =>
@@ -39,6 +39,18 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          {/* Full-document <a> so /blog is always a fresh SSR load. Gated on
+              published posts (resolved server-side in the root layout). */}
+          {blogHasPosts && (
+            <a
+              href="/blog"
+              className={`text-xs uppercase tracking-[0.25em] transition-colors ${
+                isActive('/blog') ? 'text-brass' : 'text-walnut-deep/80 hover:text-brass'
+              }`}
+            >
+              Journal
+            </a>
+          )}
         </nav>
 
         <button
@@ -64,6 +76,15 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            {blogHasPosts && (
+              <a
+                href="/blog"
+                onClick={() => setOpen(false)}
+                className="text-sm uppercase tracking-[0.25em] text-walnut-deep"
+              >
+                Journal
+              </a>
+            )}
           </nav>
         </div>
       )}

@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { siteConfig, siteUrl } from '@/lib/site';
+import { getBlogHasPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl('/')),
@@ -62,7 +63,11 @@ const orgJsonLd = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // SSR the blog availability once at the root so the header + footer can gate
+  // the "Journal" link on whether any posts exist. Cached (revalidate) so this
+  // does NOT deopt every page to dynamic rendering.
+  const blogHasPosts = await getBlogHasPosts();
   return (
     // PERF: inline the cream base background (#F8F3EB, the resolved value of
     // --background ≈ oklch(0.965 0.012 80)) on <html>/<body> so the theme paints
@@ -82,9 +87,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="overflow-x-clip" style={{ backgroundColor: '#F8F3EB' }}>
         <div className="flex min-h-screen flex-col">
-          <Header />
+          <Header blogHasPosts={blogHasPosts} />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer blogHasPosts={blogHasPosts} />
           <div className="fixed bottom-5 right-5 z-50">
             <WhatsAppButton
               size="sm"

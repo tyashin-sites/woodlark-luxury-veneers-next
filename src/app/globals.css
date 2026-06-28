@@ -83,6 +83,60 @@
   .container-x {
     @apply mx-auto w-full px-6 md:px-12 xl:px-20;
   }
+
+  /* Blog article body — platform-authored HTML rendered in Woodlark's type
+     system. Scoped to .blog-prose so it never leaks into the rest of the site. */
+  .blog-prose {
+    @apply text-[0.975rem] leading-[1.75] text-walnut-deep/85;
+  }
+  .blog-prose > * + * {
+    @apply mt-6;
+  }
+  .blog-prose h2 {
+    @apply font-display text-3xl md:text-4xl text-walnut-deep mt-14 mb-2 leading-tight;
+  }
+  .blog-prose h3 {
+    @apply font-display text-2xl text-walnut-deep mt-10 mb-1 leading-tight;
+  }
+  .blog-prose h4 {
+    @apply font-display text-xl text-walnut-deep mt-8;
+  }
+  .blog-prose p {
+    @apply text-walnut-deep/85;
+  }
+  .blog-prose a {
+    @apply text-brass underline underline-offset-4 decoration-brass/40 hover:decoration-brass;
+  }
+  .blog-prose strong {
+    @apply text-walnut-deep font-semibold;
+  }
+  .blog-prose ul {
+    @apply list-disc pl-6 space-y-2 marker:text-brass;
+  }
+  .blog-prose ol {
+    @apply list-decimal pl-6 space-y-2 marker:text-brass;
+  }
+  .blog-prose blockquote {
+    @apply border-l-2 border-brass pl-5 italic font-display text-xl text-walnut-deep/80;
+  }
+  .blog-prose img {
+    @apply w-full my-8;
+  }
+  .blog-prose figure figcaption {
+    @apply text-xs uppercase tracking-[0.2em] text-muted-foreground mt-2 text-center;
+  }
+  .blog-prose hr {
+    @apply my-12 border-border;
+  }
+  .blog-prose code {
+    @apply font-mono text-[0.85em] bg-muted px-1.5 py-0.5 rounded;
+  }
+  .blog-prose pre {
+    @apply bg-walnut-deep text-cream p-5 overflow-x-auto text-sm;
+  }
+  .blog-prose pre code {
+    @apply bg-transparent p-0;
+  }
 }
 
 @layer utilities {
