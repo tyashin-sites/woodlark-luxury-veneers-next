@@ -1,17 +1,16 @@
-import type { Metadata } from 'next';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { listProducts, listCategories, toView } from '@/lib/api';
-import { siteUrl } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'The Collection — Woodlark Hybrid Veneer',
   description:
     'Browse the full Woodlark hybrid veneer collection — curated tones from Bleached Ash to Fumed Eucalyptus, engineered for consistency at project scale.',
-  alternates: { canonical: siteUrl('/collection') },
-};
+  path: '/collection',
+});
 
 export default async function CollectionPage() {
   const [products, categories] = await Promise.all([listProducts({ limit: 100, sortBy: 'name', sortOrder: 'asc' }), listCategories()]);
