@@ -25,8 +25,11 @@ export const siteConfig = {
   // URL, then set `url` + `sizeLabel`. While `url` is empty, /catalog shows a tasteful
   // "request the catalogue on WhatsApp" fallback instead of a broken embed.
   catalogue: {
-    url: '', // TODO: set once the compressed catalogue PDF is hosted (see /catalog page)
-    sizeLabel: '', // e.g. '24 MB' — shown on the download button
+    // Self-hosted static asset in public/. Source was a 343 MB / 78-page Canva PDF,
+    // downsampled to ~120 dpi (ghostscript) → 15 MB so it fits Cloudflare's 25 MiB
+    // static-asset cap and downloads fast. Re-compress + replace the file to update.
+    url: '/woodlark-hybrid-catalogue.pdf',
+    sizeLabel: '15 MB', // shown on the download button
     edition: 'Hybrid Veneer · 2025 Edition',
   },
   nav: [
