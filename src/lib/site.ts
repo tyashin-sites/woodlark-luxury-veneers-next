@@ -2,6 +2,8 @@
 // `domain` is the only field that needs to change if the customer's domain is
 // not actually woodlarkveneer.com — every page that emits canonicals, OG URLs, or
 // JSON-LD reads from here.
+import type { Metadata } from 'next';
+
 export const siteConfig = {
   name: 'Woodlark',
   tagline: 'Hybrid Veneer, made for the bold',
@@ -35,4 +37,39 @@ export function siteUrl(path = '/') {
 export function whatsappLink(message?: string) {
   const base = `https://wa.me/${siteConfig.whatsappNumber}`;
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
+
+/**
+ * Build a complete per-page Metadata object — canonical + absolute Open Graph
+ * + Twitter Card — so no inner page falls back to the layout's generic OG.
+ * (schema.org JSON-LD is injected by the Tyashin platform edge; not here.)
+ */
+export function pageMetadata(opts: {
+  title?: string;
+  description: string;
+  path: string;
+  image?: string;
+  type?: 'website' | 'article';
+}): Metadata {
+  const url = siteUrl(opts.path);
+  const image = opts.image || siteConfig.ogImage;
+  return {
+    title: opts.title,
+    description: opts.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: opts.type || 'website',
+      url,
+      siteName: siteConfig.name,
+      title: opts.title || siteConfig.name,
+      description: opts.description,
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: opts.title || siteConfig.name,
+      description: opts.description,
+      images: [image],
+    },
+  };
 }

@@ -1,13 +1,12 @@
-import type { Metadata } from 'next';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { siteUrl } from '@/lib/site';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Our Story — Woodlark',
   description:
     'Born in Delhi, inspired by Italy. Woodlark makes hybrid veneer engineered for consistency, scale and the boldest modern interiors.',
-  alternates: { canonical: siteUrl('/about') },
-};
+  path: '/about',
+});
 
 const pillars = [
   {

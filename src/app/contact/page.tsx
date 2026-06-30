@@ -1,14 +1,13 @@
-import type { Metadata } from 'next';
 import { Mail, MapPin, MessageCircle } from 'lucide-react';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { siteConfig, siteUrl } from '@/lib/site';
+import { siteConfig, pageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Contact Woodlark — Samples, Pricing & Projects',
   description:
     'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 91388 80121 · sales@woodlarkveneer.com.',
-  alternates: { canonical: siteUrl('/contact') },
-};
+  path: '/contact',
+});
 
 function ContactCard({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (

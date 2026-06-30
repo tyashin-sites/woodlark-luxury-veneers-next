@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { getProductBySlug, listProducts, listCategories, toView } from '@/lib/api';
-import { siteConfig, siteUrl } from '@/lib/site';
+import { siteConfig, siteUrl, pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
 
@@ -17,18 +17,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const img = p.images.find((i) => i.isPrimary)?.url ?? p.images[0]?.url;
   const title = `${p.name}${p.sku ? ` (${p.sku})` : ''} — Woodlark Veneer`;
   const description = p.shortDescription ?? p.description.slice(0, 160);
-  return {
-    title,
-    description,
-    alternates: { canonical: siteUrl(`/products/${p.slug}`) },
-    openGraph: {
-      type: 'website',
-      url: siteUrl(`/products/${p.slug}`),
-      title,
-      description,
-      images: img ? [img] : [],
-    },
-  };
+  // Adds Twitter Card alongside canonical + OG. Product+Offer JSON-LD is
+  // injected by the Tyashin platform edge.
+  return pageMetadata({ title, description, path: `/products/${p.slug}`, image: img });
 }
 
 export default async function ProductPage({ params }: Params) {
