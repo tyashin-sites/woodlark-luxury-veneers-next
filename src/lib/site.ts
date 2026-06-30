@@ -20,8 +20,23 @@ export const siteConfig = {
     pincode: '124507',
   },
   ogImage: '/images/og-default.jpg',
+  // The catalogue PDF surfaced on /catalog. Host the (web-compressed) PDF either as a
+  // static asset in `public/` (e.g. '/woodlark-hybrid-catalogue.pdf') or as an R2/media
+  // URL, then set `url` + `sizeLabel`. While `url` is empty, /catalog shows a tasteful
+  // "request the catalogue on WhatsApp" fallback instead of a broken embed.
+  catalogue: {
+    url: '', // TODO: set once the compressed catalogue PDF is hosted (see /catalog page)
+    sizeLabel: '', // e.g. '24 MB' — shown on the download button
+    edition: 'Hybrid Veneer · 2025 Edition',
+  },
   nav: [
-    { label: 'Collection', href: '/collection' },
+    // --- HIDDEN 2026-06-30: the "Collection" link is hidden site-wide (Header AND Footer
+    //     both map over siteConfig.nav) until the customer provides real product photography.
+    //     TO RESTORE: uncomment the Collection entry below (and drop the Catalog entry if it's
+    //     no longer wanted). This pairs with the hidden Featured-Collection section and the
+    //     repointed hero CTA in src/app/page.tsx. Grep the repo for "HIDDEN 2026-06-30". ---
+    // { label: 'Collection', href: '/collection' },
+    { label: 'Catalog', href: '/catalog' },
     { label: 'Our Story', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],

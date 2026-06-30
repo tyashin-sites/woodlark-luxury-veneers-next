@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import { USPSection } from '@/components/USPSection';
-import { ProductCard } from '@/components/ProductCard';
+// HIDDEN 2026-06-30: ProductCard only fed the Featured-Collection section below, which is
+// hidden until real product photos arrive. Restore this import when that section returns.
+// import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { listProducts, listCategories, toView } from '@/lib/api';
@@ -21,7 +23,10 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const [products, categories] = await Promise.all([listProducts({ limit: 24 }), listCategories()]);
   const views = products.map((p) => toView(p, categories));
-  const featured = views.slice(0, 4);
+  // HIDDEN 2026-06-30: feeds the Featured-Collection section below (hidden until real
+  // product photos arrive). Restore alongside that section. `views` is still used by
+  // ProductSearch, so it stays.
+  // const featured = views.slice(0, 4);
 
   return (
     <>
@@ -39,11 +44,14 @@ export default async function HomePage() {
             Discover the {siteConfig.name} collection — hybrid veneer that redefines performance and style, sheet after consistent sheet.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
+            {/* HIDDEN 2026-06-30: hero primary CTA repointed from /collection → /catalog while
+                the Collection is hidden (no real product photos yet). TO RESTORE: swap the
+                href back to "/collection" and the label back to "Explore the Collection →". */}
             <Link
-              href="/collection"
+              href="/catalog"
               className="inline-flex items-center gap-3 px-7 py-3.5 text-xs uppercase tracking-[0.25em] bg-brass text-walnut-deep hover:bg-cream transition-colors"
             >
-              Explore the Collection →
+              View the Catalogue →
             </Link>
             <WhatsAppButton label="Enquire on WhatsApp" variant="ghost" />
           </div>
@@ -66,6 +74,11 @@ export default async function HomePage() {
 
       <USPSection />
 
+      {/* --- HIDDEN 2026-06-30: Featured-Collection section hidden until the customer supplies
+          real product photography. When restoring, also: (1) uncomment the `ProductCard` import
+          and the `featured` const at the top of this file, (2) restore the hero CTA to
+          /collection, and (3) restore the Collection nav entry in src/lib/site.ts.
+          Grep "HIDDEN 2026-06-30" to find every spot.
       <section className="container-x py-24 md:py-32 border-t border-border">
         <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
           <div>
@@ -85,6 +98,7 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+      --- end HIDDEN 2026-06-30 --- */}
 
       <section className="relative overflow-hidden bg-walnut-deep text-cream">
         <div className="container-x py-24 md:py-32 text-center">
