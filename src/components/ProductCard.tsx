@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { optimizedSrc, imgSrcSet, PRODUCT_CARD_SIZES } from '@/lib/img';
 import type { ProductView } from '@/lib/types';
 
 export function ProductCard({ product }: { product: ProductView }) {
@@ -6,7 +7,9 @@ export function ProductCard({ product }: { product: ProductView }) {
     <Link href={`/products/${product.slug}`} className="group block">
       <div className="relative overflow-hidden bg-muted aspect-[4/5]">
         <img
-          src={product.image}
+          src={optimizedSrc(product.image, 600)}
+          srcSet={imgSrcSet(product.image) || undefined}
+          sizes={PRODUCT_CARD_SIZES}
           alt={product.imageAlt}
           width={800}
           height={1000}
