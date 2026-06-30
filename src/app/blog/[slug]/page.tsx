@@ -87,7 +87,10 @@ export default async function BlogPostPage({ params }: Params) {
           {post.readTime ? ` · ${post.readTime} min read` : ''}
         </div>
 
-        {post.featuredImage && (
+        {/* Auto-generated posts inline the featured image at the top of the
+            body, so only show a standalone hero when the body doesn't already
+            contain it (avoids the image rendering twice). */}
+        {post.featuredImage && !post.content?.includes(post.featuredImage) && (
           <img
             src={post.featuredImage}
             alt={post.title}

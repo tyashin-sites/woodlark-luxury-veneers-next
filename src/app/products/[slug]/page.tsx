@@ -7,6 +7,19 @@ import { getProductBySlug, listProducts, listCategories, toView } from '@/lib/ap
 import { siteConfig, siteUrl, pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
+export const dynamicParams = true;
+
+// Pre-render every product at build so PDPs open instantly from cache instead
+// of a cold on-demand SSR round-trip. ISR keeps them fresh; dynamicParams lets
+// new products render on first hit then cache.
+export async function generateStaticParams() {
+  try {
+    const products = await listProducts({ limit: 200 });
+    return products.map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
+}
 
 type Params = { params: Promise<{ slug: string }> };
 
