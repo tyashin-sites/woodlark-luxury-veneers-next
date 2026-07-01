@@ -5,7 +5,7 @@ import { siteConfig, pageMetadata } from '@/lib/site';
 export const metadata = pageMetadata({
   title: 'Contact Woodlark — Samples, Pricing & Projects',
   description:
-    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 91388 80121 · sales@woodlarkveneer.com.',
+    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 82879 03410 · sales@woodlarkveneer.com.',
   path: '/contact',
 });
 

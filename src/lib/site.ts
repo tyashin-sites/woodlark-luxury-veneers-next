@@ -10,8 +10,8 @@ export const siteConfig = {
   description:
     'Embracing Italian excellence, crafted for the bold. Discover the collection that redefines performance and style.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'woodlarkveneer.com',
-  whatsappNumber: '919138880121',
-  whatsappDisplay: '+91 91388 80121',
+  whatsappNumber: '918287903410',
+  whatsappDisplay: '+91 82879 03410',
   email: 'sales@woodlarkveneer.com',
   address: {
     company: 'Woodlark',
