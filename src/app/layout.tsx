@@ -51,7 +51,8 @@ const orgJsonLd = {
   '@type': 'Organization',
   name: 'Woodlark',
   url: siteUrl('/'),
-  email: siteConfig.email,
+  // HIDDEN 2026-07-01: email omitted from structured data — inbox isn't monitored right now.
+  // email: siteConfig.email,
   telephone: `+${siteConfig.whatsappNumber}`,
   address: {
     '@type': 'PostalAddress',

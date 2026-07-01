@@ -12,6 +12,11 @@ export const siteConfig = {
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'woodlarkveneer.com',
   whatsappNumber: '918287903410',
   whatsappDisplay: '+91 82879 03410',
+  // Secondary "for any queries" line (Varun), shown alongside the primary number on the
+  // contact page. Deliberately NOT wired into the site-wide WhatsApp CTAs — those stay on
+  // the primary number above.
+  queriesPhone: '919138880121',
+  queriesPhoneDisplay: '+91 91388 80121',
   email: 'sales@woodlarkveneer.com',
   address: {
     company: 'Woodlark',
@@ -27,12 +32,12 @@ export const siteConfig = {
   // URL, then set `url` + `sizeLabel`. While `url` is empty, /catalog shows a tasteful
   // "request the catalogue on WhatsApp" fallback instead of a broken embed.
   catalogue: {
-    // Self-hosted static asset in public/. Source was a 343 MB / 78-page Canva PDF,
-    // downsampled to ~120 dpi (ghostscript) → 15 MB so it fits Cloudflare's 25 MiB
-    // static-asset cap and downloads fast. Re-compress + replace the file to update.
+    // Self-hosted static asset in public/. Source = the 97-page "8x4/10x4 sheet photos"
+    // PDF (69 MB), downsampled via ghostscript to fit Cloudflare's 25 MiB static-asset cap
+    // and download fast. Re-compress + replace the file to update.
     url: '/woodlark-hybrid-catalogue.pdf',
-    sizeLabel: '15 MB', // shown on the download button
-    edition: 'Hybrid Veneer · 2025 Edition',
+    sizeLabel: '', // size intentionally hidden on the /catalog download button
+    edition: 'Hybrid Veneer · 2026 Edition',
   },
   nav: [
     // --- HIDDEN 2026-06-30: the "Collection" link is hidden site-wide (Header AND Footer

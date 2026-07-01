@@ -1,11 +1,11 @@
-import { Mail, MapPin, MessageCircle } from 'lucide-react';
+import { MapPin, MessageCircle, Phone } from 'lucide-react';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { siteConfig, pageMetadata } from '@/lib/site';
 
 export const metadata = pageMetadata({
   title: 'Contact Woodlark — Samples, Pricing & Projects',
   description:
-    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 82879 03410 · sales@woodlarkveneer.com.',
+    'Reach the Woodlark team for sample requests, project pricing and specification support. WhatsApp +91 82879 03410 or +91 91388 80121.',
   path: '/contact',
 });
 
@@ -45,8 +45,16 @@ export default function ContactPage() {
               {siteConfig.whatsappDisplay}
             </a>
           </ContactCard>
+          {/* HIDDEN 2026-07-01: email card hidden — the team isn't monitoring the inbox
+              right now. TO RESTORE: uncomment this and re-add `Mail` to the lucide import.
           <ContactCard icon={<Mail size={18} />} label="Email">
             <a href={`mailto:${siteConfig.email}`} className="hover:text-brass">{siteConfig.email}</a>
+          </ContactCard>
+          */}
+          <ContactCard icon={<Phone size={18} />} label="For any queries">
+            <a href={`https://wa.me/${siteConfig.queriesPhone}`} target="_blank" rel="noopener noreferrer" className="hover:text-brass">
+              {siteConfig.queriesPhoneDisplay}
+            </a>
           </ContactCard>
           <ContactCard icon={<MapPin size={18} />} label="Manufacturing & Showroom">
             <address className="not-italic leading-relaxed">

@@ -5,15 +5,18 @@ import { USPSection } from '@/components/USPSection';
 // HIDDEN 2026-06-30: ProductCard only fed the Featured-Collection section below, which is
 // hidden until real product photos arrive. Restore this import when that section returns.
 // import { ProductCard } from '@/components/ProductCard';
-import { ProductSearch } from '@/components/ProductSearch';
+// HIDDEN 2026-07-01: ProductSearch hidden from the home page (customer request).
+// import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { listProducts, listCategories, toView } from '@/lib/api';
+// HIDDEN 2026-07-01: product data no longer fetched on the home page — both the Featured
+// section and ProductSearch are hidden. Restore with the fetch + ProductSearch below.
+// import { listProducts, listCategories, toView } from '@/lib/api';
 import { siteConfig, siteUrl } from '@/lib/site';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Luxury Hybrid Veneer | Woodlark, Delhi',
+  title: 'Luxury Hybrid Veneer | Woodlark',
   description:
     'Woodlark hybrid veneer — Italian excellence, consistent at project scale, crafted for bold modern interiors.',
   alternates: { canonical: siteUrl('/') },
@@ -21,11 +24,11 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [products, categories] = await Promise.all([listProducts({ limit: 24 }), listCategories()]);
-  const views = products.map((p) => toView(p, categories));
-  // HIDDEN 2026-06-30: feeds the Featured-Collection section below (hidden until real
-  // product photos arrive). Restore alongside that section. `views` is still used by
-  // ProductSearch, so it stays.
+  // HIDDEN 2026-07-01: no product data is used on the home page anymore — the Featured
+  // section (HIDDEN 2026-06-30) and ProductSearch (HIDDEN 2026-07-01) are both hidden.
+  // Restore these lines together with the ProductSearch import + section below.
+  // const [products, categories] = await Promise.all([listProducts({ limit: 24 }), listCategories()]);
+  // const views = products.map((p) => toView(p, categories));
   // const featured = views.slice(0, 4);
 
   return (
@@ -58,6 +61,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* --- HIDDEN 2026-07-01: product-code search hidden from the home page (customer
+          request — they don't want products surfaced until real photos land). TO RESTORE:
+          uncomment this section + the ProductSearch import + the product fetch (`views`) above.
       <section className="container-x py-16 border-t border-border">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-5">
@@ -71,6 +77,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      --- end HIDDEN 2026-07-01 --- */}
 
       <USPSection />
 

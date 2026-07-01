@@ -40,7 +40,7 @@ export default function CatalogPage() {
               className="inline-flex items-center gap-3 px-7 py-3.5 text-xs uppercase tracking-[0.25em] bg-brass text-walnut-deep hover:bg-walnut-deep hover:text-cream transition-colors"
             >
               <Download size={16} />
-              Download the Catalogue{catalogue.sizeLabel ? ` · PDF ${catalogue.sizeLabel}` : ' · PDF'}
+              Download the Catalogue
             </a>
             <WhatsAppButton label="Get it on WhatsApp" variant="outline" message="Hi Woodlark — please share the latest catalogue." />
           </div>
