@@ -48,6 +48,11 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
                 WhatsApp · {siteConfig.whatsappDisplay}
               </a>
             </div>
+            <div>
+              <a href={`https://wa.me/${siteConfig.queriesPhone}`} target="_blank" rel="noopener noreferrer" className="hover:text-brass transition-colors">
+                Queries · {siteConfig.queriesPhoneDisplay}
+              </a>
+            </div>
             {/* HIDDEN 2026-07-01: email hidden — team isn't monitoring the inbox right now.
                 TO RESTORE: uncomment this block.
             <div>

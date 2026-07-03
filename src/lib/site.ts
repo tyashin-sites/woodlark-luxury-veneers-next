@@ -27,15 +27,15 @@ export const siteConfig = {
     pincode: '124507',
   },
   ogImage: '/images/og-default.jpg',
-  // The catalogue PDF surfaced on /catalog. Host the (web-compressed) PDF either as a
-  // static asset in `public/` (e.g. '/woodlark-hybrid-catalogue.pdf') or as an R2/media
-  // URL, then set `url` + `sizeLabel`. While `url` is empty, /catalog shows a tasteful
-  // "request the catalogue on WhatsApp" fallback instead of a broken embed.
+  // The catalogue PDF surfaced on /catalog — used for BOTH the download link and the inline
+  // viewer (both read this single `url`). Host as a static asset in `public/`. When replacing
+  // the catalogue, give the file a NEW name (bump the year/version) so the URL changes and
+  // visitors' browsers can't serve a stale cached copy of the old PDF.
   catalogue: {
     // Self-hosted static asset in public/. Source = the 97-page "8x4/10x4 sheet photos"
-    // PDF (69 MB), downsampled via ghostscript to fit Cloudflare's 25 MiB static-asset cap
-    // and download fast. Re-compress + replace the file to update.
-    url: '/woodlark-hybrid-catalogue.pdf',
+    // PDF (69 MB), downsampled via ghostscript to ~17 MB (fits Cloudflare's 25 MiB
+    // static-asset cap and downloads fast).
+    url: '/woodlark-catalogue-2026.pdf',
     sizeLabel: '', // size intentionally hidden on the /catalog download button
     edition: 'Hybrid Veneer · 2026 Edition',
   },
