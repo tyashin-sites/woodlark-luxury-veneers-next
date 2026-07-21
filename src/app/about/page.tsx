@@ -4,7 +4,7 @@ import { pageMetadata } from '@/lib/site';
 export const metadata = pageMetadata({
   title: 'Our Story — Woodlark',
   description:
-    'Born in Delhi, inspired by Italy. Woodlark makes hybrid veneer engineered for consistency, scale and the boldest modern interiors.',
+    'A legacy of more than 30 years, inspired by Italy. Woodlark makes hybrid veneer engineered for consistency, scale and modern interiors.',
   path: '/about',
 });
 
@@ -50,7 +50,8 @@ export default function AboutPage() {
         <div className="container-x relative pb-16 text-cream">
           <div className="text-[10px] uppercase tracking-[0.4em] text-brass mb-4">Our Story</div>
           <h1 className="font-display text-5xl md:text-7xl max-w-3xl leading-[0.95] text-balance">
-            Born in Delhi.
+            {/* 2026-07-03: was "Born in Delhi." — customer does not want a Delhi-brand association. */}
+            A legacy of more than 30 years.
             <br />
             Inspired by Italy.
           </h1>

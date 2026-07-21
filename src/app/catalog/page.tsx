@@ -6,7 +6,7 @@ import { siteConfig, siteUrl } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Catalogue — Woodlark Hybrid Veneer',
   description:
-    'Browse and download the Woodlark hybrid veneer catalogue — the full palette of tones, sizes and finishes, made for the bold.',
+    'Browse and download the Woodlark hybrid veneer catalogue — the full palette of tones and finishes. All designs available in 8x4 and 10x4.',
   alternates: { canonical: siteUrl('/catalog') },
   openGraph: { url: siteUrl('/catalog'), images: [siteConfig.ogImage] },
 };
@@ -26,8 +26,9 @@ export default function CatalogPage() {
           The Woodlark <em className="text-brass not-italic font-light">Catalogue</em>
         </h1>
         <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
-          The complete palette — every tone, size and finish in one place. Browse it here, or
-          download a copy to share with your client or specification team.
+          The complete palette — every tone and finish in one place, all designs available in
+          8x4 and 10x4. Browse it here, or download a copy to share with your client or
+          specification team.
         </p>
 
         {hasCatalogue && (

@@ -6,9 +6,11 @@ import type { Metadata } from 'next';
 
 export const siteConfig = {
   name: 'Woodlark',
-  tagline: 'Hybrid Veneer, made for the bold',
-  description:
-    'Embracing Italian excellence, crafted for the bold. Discover the collection that redefines performance and style.',
+  // Brand line, per the customer (2026-07-03). `${tagline}. ${description}` composes the
+  // canonical one-liner used in meta/OG/footer:
+  //   "Embracing Italian excellence. A Legacy of More Than 30 Years. A Future of Fine Veneers."
+  tagline: 'Embracing Italian excellence',
+  description: 'A Legacy of More Than 30 Years. A Future of Fine Veneers.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'woodlarkveneer.com',
   whatsappNumber: '918287903410',
   whatsappDisplay: '+91 82879 03410',

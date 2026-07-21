@@ -9,7 +9,7 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
         <div className="md:col-span-5">
           <div className="font-display text-3xl tracking-[0.25em]">WOODLARK</div>
           <p className="mt-4 text-sm text-cream/60 max-w-sm leading-relaxed">
-            {siteConfig.tagline}. Embracing Italian excellence, crafted for the bold.
+            {siteConfig.tagline}. {siteConfig.description}
           </p>
         </div>
 
@@ -68,7 +68,9 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
       <div className="border-t border-cream/10">
         <div className="container-x py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] uppercase tracking-[0.25em] text-cream/50">
           <span>© {new Date().getFullYear()} Woodlark</span>
-          <span>Designed in Delhi · Crafted for the bold</span>
+          {/* 2026-07-03: "Designed in Delhi · Crafted for the bold" removed — the customer does
+              not want the site to read as a Delhi brand. Replaced with approved brand copy. */}
+          <span>See what&apos;s beyond the surface · See timeless grains</span>
         </div>
       </div>
     </footer>

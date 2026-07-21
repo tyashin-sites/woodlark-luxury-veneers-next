@@ -18,7 +18,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: 'Luxury Hybrid Veneer | Woodlark',
   description:
-    'Woodlark hybrid veneer — Italian excellence, consistent at project scale, crafted for bold modern interiors.',
+    'Woodlark hybrid veneer — embracing Italian excellence. A legacy of more than 30 years, a future of fine veneers.',
   alternates: { canonical: siteUrl('/') },
   openGraph: { url: siteUrl('/'), images: [siteConfig.ogImage] },
 };
@@ -41,10 +41,10 @@ export default async function HomePage() {
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] text-cream max-w-4xl text-balance">
             Embracing Italian excellence,<br />
-            <em className="text-brass not-italic font-light">crafted for the bold.</em>
+            <em className="text-brass not-italic font-light">a future of fine veneers.</em>
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-cream/80 leading-relaxed">
-            Discover the {siteConfig.name} collection — hybrid veneer that redefines performance and style, sheet after consistent sheet.
+            A legacy of more than 30 years. See what&apos;s beyond the surface — see timeless grains.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
             {/* HIDDEN 2026-06-30: hero primary CTA repointed from /collection → /catalog while
