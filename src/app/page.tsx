@@ -18,7 +18,9 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: 'Luxury Hybrid Veneer | Woodlark',
   description:
-    'Woodlark hybrid veneer — embracing Italian excellence. A legacy of more than 30 years, a future of fine veneers.',
+    // Exactly the customer's brand line — the share card's title is already "Woodlark",
+    // so the description carries the line on its own.
+    `${siteConfig.tagline}. ${siteConfig.description}`,
   alternates: { canonical: siteUrl('/') },
   openGraph: { url: siteUrl('/'), images: [siteConfig.ogImage] },
 };
