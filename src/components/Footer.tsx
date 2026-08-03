@@ -72,6 +72,19 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
               not want the site to read as a Delhi brand. Replaced with approved brand copy. */}
           <span>See what&apos;s beyond the surface · See timeless grains</span>
         </div>
+        {/* Platform attribution (Tyashin addendum §3f) — kept in the footer's own
+            uppercase-tracked cream style so it reads as part of the site. */}
+        <div className="container-x pb-6 text-center text-[10px] uppercase tracking-[0.25em] text-cream/50">
+          Powered by{' '}
+          <a
+            href="https://tyashin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-brass transition-colors"
+          >
+            Tyashin
+          </a>
+        </div>
       </div>
     </footer>
   );
