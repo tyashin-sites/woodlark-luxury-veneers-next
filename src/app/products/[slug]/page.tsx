@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { getProductBySlug, listProducts, listCategories, toView } from '@/lib/api';
+import { optimizedSrc, imgSrcSet, shareImage, HERO_WIDTHS, PRODUCT_HERO_SIZES } from '@/lib/img';
 import { siteConfig, siteUrl, pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
@@ -32,7 +33,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const description = p.shortDescription ?? p.description.slice(0, 160);
   // Adds Twitter Card alongside canonical + OG. Product+Offer JSON-LD is
   // injected by the Tyashin platform edge.
-  return pageMetadata({ title, description, path: `/products/${p.slug}`, image: img });
+  // `shareImage` bounds the width — the stored URL is a full-resolution camera
+  // original, which scrapers won't fetch.
+  return pageMetadata({ title, description, path: `/products/${p.slug}`, image: shareImage(img) });
 }
 
 export default async function ProductPage({ params }: Params) {
@@ -57,7 +60,7 @@ export default async function ProductPage({ params }: Params) {
     '@type': 'Product',
     name: view.name,
     sku: view.sku,
-    image: view.image,
+    image: shareImage(view.image),
     description: product.description,
     brand: { '@type': 'Brand', name: 'Woodlark' },
     category: view.category,
@@ -88,7 +91,9 @@ export default async function ProductPage({ params }: Params) {
         <div className="lg:col-span-7">
           <div className="relative bg-muted aspect-[4/5] overflow-hidden">
             <img
-              src={view.image}
+              src={optimizedSrc(view.image, 1200)}
+              srcSet={imgSrcSet(view.image, HERO_WIDTHS) || undefined}
+              sizes={PRODUCT_HERO_SIZES}
               alt={view.imageAlt}
               width={1200}
               height={1500}

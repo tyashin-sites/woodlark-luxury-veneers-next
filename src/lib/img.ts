@@ -37,3 +37,28 @@ export function imgSrcSet(url: string, widths: readonly number[] = CARD_WIDTHS):
 
 /** Default `sizes` for a product card in the responsive catalog grid. */
 export const PRODUCT_CARD_SIZES = '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw';
+
+/**
+ * Widths for the product-detail hero — it occupies ~7/12 of a wide container,
+ * so it needs candidates well past the card set, up to 2x for retina.
+ */
+export const HERO_WIDTHS = [600, 900, 1200, 1600, 2000] as const;
+
+/** `sizes` for the PDP hero: full width on mobile, ~7/12 of the container above lg. */
+export const PRODUCT_HERO_SIZES = '(max-width: 1024px) 100vw, 58vw';
+
+/**
+ * Width for a share-card / structured-data image.
+ *
+ * These URLs are fetched by scrapers (WhatsApp, Slack, Google), NOT by a browser
+ * honouring `srcSet` — so an undecorated URL hands them the full-resolution
+ * camera original. Most scrapers cap the bytes they'll pull and simply drop the
+ * preview when the image is too big, so an un-bounded OG image doesn't just load
+ * slowly, it silently stops rendering. 1200px is the standard OG width.
+ */
+export const SHARE_IMAGE_WIDTH = 1200;
+
+/** Bound an image for share cards / JSON-LD. No-op on non-media URLs. */
+export function shareImage(url: string | undefined): string | undefined {
+  return url ? optimizedSrc(url, SHARE_IMAGE_WIDTH) : url;
+}

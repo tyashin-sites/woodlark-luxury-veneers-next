@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
+import { optimizedSrc } from '@/lib/img';
 import type { ProductView } from '@/lib/types';
 
 interface Props {
@@ -68,7 +69,9 @@ export function ProductSearch({
                     onClick={() => setQ('')}
                     className="flex items-center gap-4 p-3 hover:bg-secondary/60 transition-colors"
                   >
-                    <img src={p.image} alt="" width={64} height={64} loading="lazy" className="w-14 h-14 object-cover" />
+                    {/* 128 = 2x the 64px box; the raw URL is a full-resolution
+                        camera original, far too heavy for a search thumbnail. */}
+                    <img src={optimizedSrc(p.image, 128)} alt="" width={64} height={64} loading="lazy" className="w-14 h-14 object-cover" />
                     <div className="flex-1 min-w-0">
                       {p.sku && <div className="text-[10px] uppercase tracking-[0.2em] text-brass">{p.sku}</div>}
                       <div className="font-display text-lg leading-tight text-walnut-deep">{p.name}</div>
