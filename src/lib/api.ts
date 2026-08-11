@@ -97,4 +97,27 @@ export function toView(p: ApiProduct, categories: ApiCategory[] = []): ProductVi
   };
 }
 
+/**
+ * Catalogue order. Every product is named for its code (`H-1` … `H-179`), and
+ * the API can only sort `name` as a string — which puts H-13 before H-2 and
+ * strands H-2…H-9 at the end of the grid. Specifiers read these codes as
+ * numbers, so sort them as numbers: compare the numeric part first, then any
+ * letter suffix (H-35A after H-35), and fall back to a plain string compare for
+ * anything that isn't an H-code.
+ *
+ * Every list view goes through here, so the whole site orders identically.
+ */
+export function sortByCode<T extends { sku: string; name: string }>(items: T[]): T[] {
+  const parse = (v: T) => {
+    const m = (v.sku || v.name).match(/^H\s*[-–_ ]?\s*(\d+)([A-Za-z]*)$/i);
+    return m ? { n: Number(m[1]), suffix: m[2].toUpperCase() } : null;
+  };
+  return [...items].sort((a, b) => {
+    const pa = parse(a);
+    const pb = parse(b);
+    if (!pa || !pb) return (a.sku || a.name).localeCompare(b.sku || b.name);
+    return pa.n - pb.n || pa.suffix.localeCompare(pb.suffix);
+  });
+}
+
 export const config = { API_URL, STOREFRONT, PROJECT_ID, hasApiKey: !!API_KEY };

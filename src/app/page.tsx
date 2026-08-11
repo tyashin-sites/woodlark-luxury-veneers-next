@@ -5,7 +5,7 @@ import { USPSection } from '@/components/USPSection';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import { listProducts, listCategories, toView } from '@/lib/api';
+import { listProducts, listCategories, toView, sortByCode } from '@/lib/api';
 import { siteConfig, siteUrl } from '@/lib/site';
 
 export const revalidate = 60;
@@ -29,7 +29,7 @@ export default async function HomePage() {
     listProducts({ limit: 100, sortBy: 'name', sortOrder: 'asc' }),
     listCategories(),
   ]);
-  const views = products.map((p) => toView(p, categories));
+  const views = sortByCode(products.map((p) => toView(p, categories)));
   const featured = views.slice(0, 4);
 
   return (

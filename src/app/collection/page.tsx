@@ -1,6 +1,6 @@
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
-import { listProducts, listCategories, toView } from '@/lib/api';
+import { listProducts, listCategories, toView, sortByCode } from '@/lib/api';
 import { pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
 
 export default async function CollectionPage() {
   const [products, categories] = await Promise.all([listProducts({ limit: 100, sortBy: 'name', sortOrder: 'asc' }), listCategories()]);
-  const views = products.map((p) => toView(p, categories));
+  const views = sortByCode(products.map((p) => toView(p, categories)));
   return (
     <>
       <section className="container-x pt-24 md:pt-32 pb-12">
