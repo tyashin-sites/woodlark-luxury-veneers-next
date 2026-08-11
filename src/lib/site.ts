@@ -42,12 +42,10 @@ export const siteConfig = {
     edition: 'Hybrid Veneer · 2026 Edition',
   },
   nav: [
-    // --- HIDDEN 2026-06-30: the "Collection" link is hidden site-wide (Header AND Footer
-    //     both map over siteConfig.nav) until the customer provides real product photography.
-    //     TO RESTORE: uncomment the Collection entry below (and drop the Catalog entry if it's
-    //     no longer wanted). This pairs with the hidden Featured-Collection section and the
-    //     repointed hero CTA in src/app/page.tsx. Grep the repo for "HIDDEN 2026-06-30". ---
-    // { label: 'Collection', href: '/collection' },
+    // RESTORED 2026-08-11: real product photography landed, so "Collection" is linked
+    // site-wide again (Header AND Footer both map over this list). The Catalog entry
+    // stays — the catalogue PDF is a separate, still-wanted asset.
+    { label: 'Collection', href: '/collection' },
     { label: 'Catalog', href: '/catalog' },
     { label: 'Our Story', href: '/about' },
     { label: 'Contact', href: '/contact' },

@@ -2,15 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import { USPSection } from '@/components/USPSection';
-// HIDDEN 2026-06-30: ProductCard only fed the Featured-Collection section below, which is
-// hidden until real product photos arrive. Restore this import when that section returns.
-// import { ProductCard } from '@/components/ProductCard';
-// HIDDEN 2026-07-01: ProductSearch hidden from the home page (customer request).
-// import { ProductSearch } from '@/components/ProductSearch';
+import { ProductCard } from '@/components/ProductCard';
+import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-// HIDDEN 2026-07-01: product data no longer fetched on the home page — both the Featured
-// section and ProductSearch are hidden. Restore with the fetch + ProductSearch below.
-// import { listProducts, listCategories, toView } from '@/lib/api';
+import { listProducts, listCategories, toView } from '@/lib/api';
 import { siteConfig, siteUrl } from '@/lib/site';
 
 export const revalidate = 60;
@@ -26,12 +21,16 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  // HIDDEN 2026-07-01: no product data is used on the home page anymore — the Featured
-  // section (HIDDEN 2026-06-30) and ProductSearch (HIDDEN 2026-07-01) are both hidden.
-  // Restore these lines together with the ProductSearch import + section below.
-  // const [products, categories] = await Promise.all([listProducts({ limit: 24 }), listCategories()]);
-  // const views = products.map((p) => toView(p, categories));
-  // const featured = views.slice(0, 4);
+  // RESTORED 2026-08-11: the home page fetches products again — it feeds BOTH the
+  // product-code search and the Featured-Collection section below. The limit must cover
+  // the WHOLE catalogue (not just the 4 featured cards): ProductSearch filters this list
+  // client-side, so anything not fetched here is unfindable by product code.
+  const [products, categories] = await Promise.all([
+    listProducts({ limit: 100, sortBy: 'name', sortOrder: 'asc' }),
+    listCategories(),
+  ]);
+  const views = products.map((p) => toView(p, categories));
+  const featured = views.slice(0, 4);
 
   return (
     <>
@@ -49,23 +48,27 @@ export default async function HomePage() {
             A legacy of more than 30 years. See what&apos;s beyond the surface — see timeless grains.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-5">
-            {/* HIDDEN 2026-06-30: hero primary CTA repointed from /collection → /catalog while
-                the Collection is hidden (no real product photos yet). TO RESTORE: swap the
-                href back to "/collection" and the label back to "Explore the Collection →". */}
+            {/* RESTORED 2026-08-11: primary CTA points at /collection again now that the
+                products carry real photography. The catalogue keeps a secondary slot —
+                it's still the asset specifiers ask for. */}
             <Link
-              href="/catalog"
+              href="/collection"
               className="inline-flex items-center gap-3 px-7 py-3.5 text-xs uppercase tracking-[0.25em] bg-brass text-walnut-deep hover:bg-cream transition-colors"
             >
-              View the Catalogue →
+              Explore the Collection →
+            </Link>
+            <Link
+              href="/catalog"
+              className="inline-flex items-center gap-3 px-7 py-3.5 text-xs uppercase tracking-[0.25em] border border-cream/40 text-cream hover:bg-cream hover:text-walnut-deep transition-colors"
+            >
+              View the Catalogue
             </Link>
             <WhatsAppButton label="Enquire on WhatsApp" variant="ghost" />
           </div>
         </div>
       </section>
 
-      {/* --- HIDDEN 2026-07-01: product-code search hidden from the home page (customer
-          request — they don't want products surfaced until real photos land). TO RESTORE:
-          uncomment this section + the ProductSearch import + the product fetch (`views`) above.
+      {/* RESTORED 2026-08-11: product-code search is back on the home page. */}
       <section className="container-x py-16 border-t border-border">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-5">
@@ -79,20 +82,17 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      --- end HIDDEN 2026-07-01 --- */}
 
       <USPSection />
 
-      {/* --- HIDDEN 2026-06-30: Featured-Collection section hidden until the customer supplies
-          real product photography. When restoring, also: (1) uncomment the `ProductCard` import
-          and the `featured` const at the top of this file, (2) restore the hero CTA to
-          /collection, and (3) restore the Collection nav entry in src/lib/site.ts.
-          Grep "HIDDEN 2026-06-30" to find every spot.
+      {/* RESTORED 2026-08-11: Featured-Collection section is back — real product
+          photography landed. */}
       <section className="container-x py-24 md:py-32 border-t border-border">
         <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-brass mb-3">The Collection</div>
-            <h2 className="font-display text-4xl md:text-5xl text-walnut-deep">Eight tones. One language.</h2>
+            {/* Count-agnostic on purpose — the catalogue grows; a hardcoded number goes stale. */}
+            <h2 className="font-display text-4xl md:text-5xl text-walnut-deep">Many tones. One language.</h2>
           </div>
           <Link
             href="/collection"
@@ -107,7 +107,6 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
-      --- end HIDDEN 2026-06-30 --- */}
 
       <section className="relative overflow-hidden bg-walnut-deep text-cream">
         <div className="container-x py-24 md:py-32 text-center">
