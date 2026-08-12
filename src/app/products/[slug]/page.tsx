@@ -29,8 +29,15 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const p = await getProductBySlug(slug);
   if (!p) return {};
   const img = p.images.find((i) => i.isPrimary)?.url ?? p.images[0]?.url;
-  const title = `${p.name}${p.sku ? ` (${p.sku})` : ''} — Woodlark Veneer`;
-  const description = p.shortDescription ?? p.description.slice(0, 160);
+  // Every product is NAMED for its code, so `name (sku)` rendered as the absurd
+  // "H-29 (H-29)" on all 74 pages — a wasted title on the site's most numerous
+  // indexed URLs. Show the code once, and spend the rest of the title on the term
+  // Woodlark wants to rank for.
+  const code = p.sku && p.sku !== p.name ? `${p.name} (${p.sku})` : p.name;
+  const title = `${code} Hybrid Veneer Sheet | Woodlark`;
+  const description =
+    p.shortDescription ??
+    `${p.name} hybrid veneer from Woodlark — available in 8x4 and 10x4 sheets with consistent tone and grain at project scale.`;
   // Adds Twitter Card alongside canonical + OG. Product+Offer JSON-LD is
   // injected by the Tyashin platform edge.
   // `shareImage` bounds the width — the stored URL is a full-resolution camera
