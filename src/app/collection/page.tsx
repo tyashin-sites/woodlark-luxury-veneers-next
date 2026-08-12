@@ -20,7 +20,11 @@ export default async function CollectionPage() {
       <section className="container-x pt-24 md:pt-32 pb-12">
         <div className="text-[10px] uppercase tracking-[0.3em] text-brass mb-5">The Collection</div>
         <h1 className="font-display text-5xl md:text-7xl text-walnut-deep leading-[0.95] max-w-4xl text-balance">
-          {views.length === 8 ? 'Eight tones, one design language.' : `${views.length} tones, one design language.`}
+          {/* Static by customer directive (2026-08-12). Deliberately NOT derived
+              from the product count: the count only reflects what's published, so
+              it dropped to "74" while 23 designs sat in draft awaiting photos, and
+              it would visibly change again each time one is published. */}
+          80+ tones, one design language.
         </h1>
         <p className="mt-6 max-w-2xl text-muted-foreground leading-relaxed">
           Every Woodlark sheet is engineered to repeat — the same tone, the same grain, every time. Browse the collection below, or search by product code.
