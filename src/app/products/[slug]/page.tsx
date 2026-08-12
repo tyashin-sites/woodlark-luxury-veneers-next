@@ -89,15 +89,19 @@ export default async function ProductPage({ params }: Params) {
 
       <section className="container-x py-12 md:py-16 grid lg:grid-cols-12 gap-12 lg:gap-20">
         <div className="lg:col-span-7">
-          <div className="relative bg-muted aspect-[4/5] overflow-hidden">
+          {/* No fixed aspect here: the hero takes the photo's OWN ratio, so the
+              sheet is shown exactly as shot — full frame, code sticker included,
+              not even a letterbox bar. (The card grid uses a fixed 1:2 box to keep
+              rows even; the PDP has no row to line up with.) */}
+          <div className="relative bg-muted overflow-hidden">
             <img
               src={optimizedSrc(view.image, 1200)}
               srcSet={imgSrcSet(view.image, HERO_WIDTHS) || undefined}
               sizes={PRODUCT_HERO_SIZES}
               alt={view.imageAlt}
               width={1200}
-              height={1500}
-              className="w-full h-full object-cover"
+              height={2340}
+              className="w-full h-auto"
             />
             {view.sku && (
               <div className="absolute top-4 left-4 bg-cream text-walnut-deep text-[10px] uppercase tracking-[0.25em] px-3 py-1.5">
