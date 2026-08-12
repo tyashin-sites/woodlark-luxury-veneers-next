@@ -35,8 +35,12 @@ export function imgSrcSet(url: string, widths: readonly number[] = CARD_WIDTHS):
   return widths.map((w) => `${optimizedSrc(url, w)} ${w}w`).join(', ');
 }
 
-/** Default `sizes` for a product card in the responsive catalog grid. */
-export const PRODUCT_CARD_SIZES = '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw';
+/**
+ * Default `sizes` for a product card. Must track the real grid or the browser
+ * picks the wrong srcSet entry: below sm the card is capped at 280px (not full
+ * width), sm is 2-up, lg is 4-up.
+ */
+export const PRODUCT_CARD_SIZES = '(max-width: 640px) 280px, (max-width: 1024px) 50vw, 25vw';
 
 /**
  * Widths for the product-detail hero — it occupies ~7/12 of a wide container,

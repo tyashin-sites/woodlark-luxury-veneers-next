@@ -31,7 +31,10 @@ export default async function CollectionPage() {
       </section>
 
       <section className="container-x py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        {/* 4-up from lg. The sheets are 1:2 portraits, so a 3-up grid made each
+            card tall enough to dominate the viewport; 4-up scales them down and
+            lets a browsing specifier compare more tones at a glance. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
           {views.map((p) => (
             <ProductCard key={p.slug} product={p} />
           ))}

@@ -4,7 +4,14 @@ import type { ProductView } from '@/lib/types';
 
 export function ProductCard({ product }: { product: ProductView }) {
   return (
-    <Link href={`/products/${product.slug}`} className="group block">
+    // max-w caps the card on a single-column (mobile) grid so a 1:2 sheet doesn't
+    // render ~750px tall and swallow the screen. It matches the width the card
+    // gets in the 4-up desktop grid, so the card reads at one consistent size
+    // everywhere; from sm up the grid controls the width and the cap is released.
+    <Link
+      href={`/products/${product.slug}`}
+      className="group block w-full max-w-[280px] mx-auto sm:max-w-none sm:mx-0"
+    >
       {/* The sheet photos are ~1:1.95 portraits with the Woodlark code sticker
           printed in the top-right corner. A 4:5 box with object-cover showed only
           the middle 64% of the height and threw the sticker away, so the box now
