@@ -34,7 +34,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   // indexed URLs. Show the code once, and spend the rest of the title on the term
   // Woodlark wants to rank for.
   const code = p.sku && p.sku !== p.name ? `${p.name} (${p.sku})` : p.name;
-  const title = `${code} Hybrid Veneer Sheet | Woodlark`;
+  // No brand suffix: the root layout's title template adds ' · Woodlark'.
+  const title = `${code} Hybrid Veneer Sheet`;
   const description =
     p.shortDescription ??
     `${p.name} hybrid veneer from Woodlark — available in 8x4 and 10x4 sheets with consistent tone and grain at project scale.`;

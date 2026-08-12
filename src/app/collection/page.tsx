@@ -10,7 +10,9 @@ export const revalidate = 60;
 // description. Named tones removed: they described the old placeholder set, and
 // the catalogue is coded H-1…H-80+, so the copy claimed products that don't exist.
 export const metadata = pageMetadata({
-  title: 'Hybrid Veneer Collection — 80+ Designs | Woodlark',
+  // The root layout applies `template: '%s · Woodlark'`, so the brand is
+  // appended automatically — repeating it here produced "… | Woodlark · Woodlark".
+  title: 'Hybrid Veneer Collection — 80+ Designs',
   description:
     'Browse the full Woodlark hybrid veneer collection — 80+ designs in 8x4 and 10x4 sheets, engineered to repeat tone and grain consistently at project scale.',
   path: '/collection',
