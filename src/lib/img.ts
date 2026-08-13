@@ -1,7 +1,7 @@
 /**
  * Responsive image delivery against Tyashin's optimizing media endpoint.
  *
- * Catalog images are served from `…/api/v1/public/media/*`, which (when the
+ * Catalogue images are served from `…/api/v1/public/media/*`, which (when the
  * project has Image Optimization enabled) resizes + re-encodes to AVIF/WebP on
  * the fly from the `?w=`, `?q=`, `?f=` params and the request `Accept`/Save-Data
  * headers. So to ship device-appropriate images we just point `srcSet` at a few

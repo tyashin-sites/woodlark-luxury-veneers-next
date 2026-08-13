@@ -17,6 +17,22 @@ const nextConfig = {
     NEXT_PUBLIC_PROJECT_ID: process.env.PROJECT_ID || '6a1c9aa66933b758bf066427',
     NEXT_PUBLIC_SITE_DOMAIN: process.env.SITE_DOMAIN || 'woodlarkveneer.com',
   },
+  /**
+   * The catalogue page moved from the US spelling `/catalog` to `/catalogue`
+   * (2026-08-12) so the whole site reads in British/Indian English.
+   *
+   * This redirect is NOT optional cleanup. `/catalog` shipped in the sitemap on
+   * 2026-08-06, so Google knows it; the "View the Catalogue" CTA has been live
+   * since June; and it's the URL Woodlark hands out when someone asks for the
+   * PDF. A 301 moves that accumulated authority to the new path instead of
+   * dropping it, and stops every existing link 404-ing.
+   *
+   * Permanent, so browsers and crawlers cache it and stop asking.
+   */
+  async redirects() {
+    return [{ source: '/catalog', destination: '/catalogue', permanent: true }];
+  },
+
   // Rewrites only fire on direct *.workers.dev access — in production the
   // Tyashin dispatch intercepts these paths before the Worker is invoked.
   async rewrites() {

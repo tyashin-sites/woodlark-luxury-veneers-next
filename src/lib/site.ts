@@ -29,7 +29,7 @@ export const siteConfig = {
     pincode: '124507',
   },
   ogImage: '/images/og-default.jpg',
-  // The catalogue PDF surfaced on /catalog — used for BOTH the download link and the inline
+  // The catalogue PDF surfaced on /catalogue — used for BOTH the download link and the inline
   // viewer (both read this single `url`). Host as a static asset in `public/`. When replacing
   // the catalogue, give the file a NEW name (bump the year/version) so the URL changes and
   // visitors' browsers can't serve a stale cached copy of the old PDF.
@@ -38,15 +38,18 @@ export const siteConfig = {
     // PDF (69 MB), downsampled via ghostscript to ~17 MB (fits Cloudflare's 25 MiB
     // static-asset cap and downloads fast).
     url: '/woodlark-catalogue-2026.pdf',
-    sizeLabel: '', // size intentionally hidden on the /catalog download button
+    sizeLabel: '', // size intentionally hidden on the /catalogue download button
     edition: 'Hybrid Veneer · 2026 Edition',
   },
   nav: [
     // RESTORED 2026-08-11: real product photography landed, so "Collection" is linked
-    // site-wide again (Header AND Footer both map over this list). The Catalog entry
-    // stays — the catalogue PDF is a separate, still-wanted asset.
+    // site-wide again (Header AND Footer both map over this list). The Catalogue
+    // entry stays — the catalogue PDF is a separate, still-wanted asset.
+    //
+    // Spelling: British/Indian English throughout ("catalogue"), including the
+    // route. Keep it that way — the audience is Indian specifiers.
     { label: 'Collection', href: '/collection' },
-    { label: 'Catalog', href: '/catalog' },
+    { label: 'Catalogue', href: '/catalogue' },
     { label: 'Our Story', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],

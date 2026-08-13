@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   title: 'Catalogue — Woodlark Hybrid Veneer',
   description:
     'Browse and download the Woodlark hybrid veneer catalogue — the full palette of tones and finishes. All designs available in 8x4 and 10x4.',
-  alternates: { canonical: siteUrl('/catalog') },
-  openGraph: { url: siteUrl('/catalog'), images: [siteConfig.ogImage] },
+  alternates: { canonical: siteUrl('/catalogue') },
+  openGraph: { url: siteUrl('/catalogue'), images: [siteConfig.ogImage] },
 };
 
 const { catalogue } = siteConfig;
 const hasCatalogue = Boolean(catalogue.url);
 
-export default function CatalogPage() {
+export default function CataloguePage() {
   return (
     <>
       {/* Intro */}
@@ -69,7 +69,7 @@ export default function CatalogPage() {
         </section>
       ) : (
         /* Fallback until the production catalogue PDF is hosted and `siteConfig.catalogue.url`
-           is set. Keeps /catalog useful (and honest) rather than showing a broken embed. */
+           is set. Keeps /catalogue useful (and honest) rather than showing a broken embed. */
         <section className="container-x py-20 md:py-28">
           <div className="max-w-2xl mx-auto border border-border bg-card p-10 md:p-14 text-center">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brass/15 text-brass mb-6">
