@@ -33,6 +33,25 @@ const nextConfig = {
     return [{ source: '/catalog', destination: '/catalogue', permanent: true }];
   },
 
+  /**
+   * The flipbook pilot lives at /experience-catalog as an unlinked internal
+   * preview (a static bundle under public/experience-catalog/). It must stay
+   * out of the index: the bundle already ships a `noindex` <meta>, but OpenNext
+   * serves these paths through the Worker and re-emits the <head>, dropping it.
+   * An `X-Robots-Tag` response header is served by that same Worker, applies to
+   * every response under the path (HTML and assets alike), and cannot be missed
+   * by a crawler — the belt-and-braces this site's history warrants. Scoped to
+   * the one prefix, so no other route is affected.
+   */
+  async headers() {
+    return [
+      {
+        source: '/experience-catalog/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ];
+  },
+
   // Rewrites only fire on direct *.workers.dev access — in production the
   // Tyashin dispatch intercepts these paths before the Worker is invoked.
   async rewrites() {
