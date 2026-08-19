@@ -6,6 +6,9 @@ export interface ApiProductImage {
 }
 
 export interface ApiProduct {
+  // The Tyashin ecommerce API returns the Mongo id as `_id`; `id` is not sent.
+  // `_id` is the identity plugins (e.g. Thridify) resolve a product by.
+  _id?: string;
   id: string;
   name: string;
   slug: string;

@@ -101,7 +101,11 @@ export default async function ProductPage({ params }: Params) {
               sheet is shown exactly as shot — full frame, code sticker included,
               not even a letterbox bar. (The card grid uses a fixed 1:2 box to keep
               rows even; the PDP has no row to line up with.) */}
-          <div className="relative bg-muted overflow-hidden" data-tyashin-slot="product-gallery">
+          <div
+            className="relative bg-muted overflow-hidden"
+            data-tyashin-slot="product-gallery"
+            data-thridify-page-product-id={product._id ?? undefined}
+          >
             <img
               src={optimizedSrc(view.image, 1200)}
               srcSet={imgSrcSet(view.image, HERO_WIDTHS) || undefined}
