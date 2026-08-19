@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: Params) {
               sheet is shown exactly as shot — full frame, code sticker included,
               not even a letterbox bar. (The card grid uses a fixed 1:2 box to keep
               rows even; the PDP has no row to line up with.) */}
-          <div className="relative bg-muted overflow-hidden">
+          <div className="relative bg-muted overflow-hidden" data-tyashin-slot="product-gallery">
             <img
               src={optimizedSrc(view.image, 1200)}
               srcSet={imgSrcSet(view.image, HERO_WIDTHS) || undefined}
@@ -127,9 +127,9 @@ export default async function ProductPage({ params }: Params) {
           {view.shortDescription && (
             <p className="mt-6 text-lg text-walnut-deep/80 italic font-display">{view.shortDescription}</p>
           )}
-          <p className="mt-6 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
+          <p className="mt-6 text-sm text-muted-foreground leading-relaxed whitespace-pre-line" data-tyashin-slot="product-description">{product.description}</p>
 
-          <div className="mt-10 p-6 border border-walnut-deep/15 bg-card">
+          <div className="mt-10 p-6 border border-walnut-deep/15 bg-card" data-tyashin-slot="product-cta">
             <div className="text-[10px] uppercase tracking-[0.3em] text-brass mb-2">Interested in this design?</div>
             <p className="text-sm text-muted-foreground mb-5">
               Request samples, technical specifications and project pricing directly on WhatsApp.
