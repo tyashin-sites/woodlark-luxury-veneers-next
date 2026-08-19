@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: Params) {
           <div
             className="relative bg-muted overflow-hidden"
             data-tyashin-slot="product-gallery"
-            data-thridify-page-product-id={product._id ?? undefined}
+            data-thridify-page-product-id={view.sku || product.name || undefined}
           >
             <img
               src={optimizedSrc(view.image, 1200)}
