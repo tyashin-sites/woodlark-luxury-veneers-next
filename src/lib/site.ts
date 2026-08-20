@@ -43,13 +43,19 @@ export const siteConfig = {
   },
   nav: [
     // RESTORED 2026-08-11: real product photography landed, so "Collection" is linked
-    // site-wide again (Header AND Footer both map over this list). The Catalogue
-    // entry stays — the catalogue PDF is a separate, still-wanted asset.
+    // site-wide again (Header AND Footer both map over this list).
     //
     // Spelling: British/Indian English throughout ("catalogue"), including the
     // route. Keep it that way — the audience is Indian specifiers.
+    //
+    // `/catalogue` is now the interactive experience-catalogue — a self-contained
+    // static bundle in public/catalogue, NOT a Next route. It must be reached by a
+    // full-page navigation (`external: true` → a plain <a>), because a client-side
+    // next/link would look for an app route that no longer exists and 404. The
+    // trailing slash targets the bundle's index.html directly. (The old PDF page
+    // now lives, unlinked, at /legacy-catalog.)
     { label: 'Collection', href: '/collection' },
-    { label: 'Catalogue', href: '/catalogue' },
+    { label: 'Catalogue', href: '/catalogue/', external: true },
     { label: 'Our Story', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],

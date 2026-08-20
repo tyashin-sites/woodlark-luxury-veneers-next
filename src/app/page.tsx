@@ -57,12 +57,14 @@ export default async function HomePage() {
             >
               Explore the Collection →
             </Link>
-            <Link
-              href="/catalogue"
+            {/* /catalogue is the interactive experience-catalogue static bundle,
+                not an app route — a full-document <a>, not next/link. */}
+            <a
+              href="/catalogue/"
               className="inline-flex items-center gap-3 px-7 py-3.5 text-xs uppercase tracking-[0.25em] border border-cream/40 text-cream hover:bg-cream hover:text-walnut-deep transition-colors"
             >
               View the Catalogue
-            </Link>
+            </a>
             <WhatsAppButton label="Enquire on WhatsApp" variant="ghost" />
           </div>
         </div>

@@ -18,9 +18,17 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
           <ul className="space-y-3 text-sm">
             {siteConfig.nav.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="hover:text-brass transition-colors">
-                  {n.label}
-                </Link>
+                {/* `external` items (the /catalogue static bundle) aren't app
+                    routes — a full-document <a>, not a client-side next/link. */}
+                {'external' in n && n.external ? (
+                  <a href={n.href} className="hover:text-brass transition-colors">
+                    {n.label}
+                  </a>
+                ) : (
+                  <Link href={n.href} className="hover:text-brass transition-colors">
+                    {n.label}
+                  </Link>
+                )}
               </li>
             ))}
             {blogHasPosts && (

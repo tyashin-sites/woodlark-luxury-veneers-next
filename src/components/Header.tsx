@@ -28,17 +28,22 @@ export function Header({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`text-xs uppercase tracking-[0.25em] transition-colors ${
-                isActive(item.href) ? 'text-brass' : 'text-walnut-deep/80 hover:text-brass'
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {siteConfig.nav.map((item) => {
+            const cls = `text-xs uppercase tracking-[0.25em] transition-colors ${
+              isActive(item.href) ? 'text-brass' : 'text-walnut-deep/80 hover:text-brass'
+            }`;
+            // `external` items (the /catalogue static bundle) are not app routes,
+            // so they need a full-document <a>, not a client-side next/link.
+            return 'external' in item && item.external ? (
+              <a key={item.href} href={item.href} className={cls}>
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.href} href={item.href} className={cls}>
+                {item.label}
+              </Link>
+            );
+          })}
           {/* Full-document <a> so /blog is always a fresh SSR load. Gated on
               published posts (resolved server-side in the root layout). */}
           {blogHasPosts && (
@@ -66,16 +71,27 @@ export function Header({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
       {open && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container-x flex flex-col py-6 gap-5">
-            {siteConfig.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="text-sm uppercase tracking-[0.25em] text-walnut-deep"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {siteConfig.nav.map((item) =>
+              'external' in item && item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm uppercase tracking-[0.25em] text-walnut-deep"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-sm uppercase tracking-[0.25em] text-walnut-deep"
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
             {blogHasPosts && (
               <a
                 href="/blog"

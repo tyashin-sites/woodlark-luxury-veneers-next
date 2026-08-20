@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://woodlarkveneer.com/sitemap.xml

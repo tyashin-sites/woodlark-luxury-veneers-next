@@ -30,7 +30,20 @@ const nextConfig = {
    * Permanent, so browsers and crawlers cache it and stop asking.
    */
   async redirects() {
-    return [{ source: '/catalog', destination: '/catalogue', permanent: true }];
+    return [
+      { source: '/catalog', destination: '/catalogue', permanent: true },
+      /**
+       * The experience-catalogue moved from its preview path `/experience-catalog`
+       * to `/catalogue` (2026-08-19), replacing the old PDF page (now at
+       * `/legacy-catalog`). The preview path was unlinked and noindex, but honour
+       * any bookmark by sending it to the new home.
+       *
+       * NOTE: only fires on direct *.workers.dev access — in production the
+       * Tyashin dispatch serves the `public/catalogue/` static bundle for
+       * `/catalogue` before the Worker runs. This redirect is the canary/safety net.
+       */
+      { source: '/experience-catalog', destination: '/catalogue', permanent: true },
+    ];
   },
 
   // Rewrites only fire on direct *.workers.dev access — in production the
