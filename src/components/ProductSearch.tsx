@@ -17,7 +17,7 @@ export function ProductSearch({
   variant = 'inline',
   // Woodlark codes are H-prefixed (H-1, H-35A, …) — the example must match a real SKU
   // or the search reads as broken to anyone who types what the placeholder shows.
-  placeholder = 'Search by product code (e.g. H-12) or name',
+  placeholder = 'Search by product code (e.g. H-79) or name',
 }: Props) {
   const [q, setQ] = useState('');
   const results = useMemo(() => {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import { USPSection } from '@/components/USPSection';
+import { HybridVeneerIntro } from '@/components/HybridVeneerIntro';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -86,6 +87,10 @@ export default async function HomePage() {
       </section>
 
       <USPSection />
+
+      {/* What hybrid veneer is — defined on the home page so a first-time visitor
+          understands the material before browsing tones. */}
+      <HybridVeneerIntro />
 
       {/* RESTORED 2026-08-11: Featured-Collection section is back — real product
           photography landed. */}

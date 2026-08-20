@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
+// Woodlark hybrid veneer shown applied in real interiors. No finish labels on
+// the hero by request — the images carry the story; product codes live in the
+// collection and search, not over lifestyle photography.
 const slides = [
-  { src: '/images/hero-1.jpg', caption: 'Walnut Noir · Residence, New Delhi' },
-  { src: '/images/hero-2.jpg', caption: 'Smoked Oak · Master Bedroom' },
-  { src: '/images/hero-3.jpg', caption: 'Golden Teak · Dining Pavilion' },
-  { src: '/images/hero-4.jpg', caption: 'Walnut Noir · Private Study' },
+  { src: '/images/hero-1.jpg', alt: 'Woodlark hybrid veneer on a living-room media wall' },
+  { src: '/images/hero-2.jpg', alt: 'Woodlark hybrid veneer kitchen cabinetry in warm light' },
+  { src: '/images/hero-3.jpg', alt: 'Woodlark hybrid veneer kitchen beside a garden of olive trees' },
 ];
 
 export function HeroCarousel() {
@@ -21,9 +23,9 @@ export function HeroCarousel() {
         <img
           key={s.src}
           src={s.src}
-          alt={s.caption}
+          alt={s.alt}
           width={1920}
-          height={1280}
+          height={1080}
           loading={i === 0 ? 'eager' : 'lazy'}
           fetchPriority={i === 0 ? 'high' : 'auto'}
           decoding="async"
@@ -34,9 +36,6 @@ export function HeroCarousel() {
       ))}
       <div className="absolute inset-0 bg-gradient-to-b from-walnut-deep/70 via-walnut-deep/40 to-walnut-deep/85" />
       <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 flex items-center gap-3 z-10">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-cream/70 hidden md:block">
-          {slides[index].caption}
-        </span>
         <div className="flex gap-2">
           {slides.map((_, i) => (
             <button

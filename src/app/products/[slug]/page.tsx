@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ProductCard } from '@/components/ProductCard';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { HybridVeneerIntro } from '@/components/HybridVeneerIntro';
 import { getProductBySlug, listProducts, listCategories, toView } from '@/lib/api';
 import { optimizedSrc, imgSrcSet, shareImage, HERO_WIDTHS, PRODUCT_HERO_SIZES } from '@/lib/img';
 import { siteConfig, siteUrl, pageMetadata } from '@/lib/site';
@@ -162,6 +163,10 @@ export default async function ProductPage({ params }: Params) {
           </div>
         </div>
       </section>
+
+      {/* What hybrid veneer is — repeated on every product page so the material
+          is defined wherever a visitor lands from search or a shared link. */}
+      <HybridVeneerIntro compact />
 
       {related.length > 0 && (
         <section className="container-x py-20 border-t border-border">
