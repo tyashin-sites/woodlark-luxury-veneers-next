@@ -5,16 +5,18 @@ import { pageMetadata } from '@/lib/site';
 
 export const revalidate = 60;
 
-// "Hybrid veneer" is the term Woodlark wants to rank for, so it leads the title
-// (the highest-weighted on-page signal) and appears once, naturally, in the
-// description. Named tones removed: they described the old placeholder set, and
-// the catalogue is coded H-1…H-80+, so the copy claimed products that don't exist.
+// SEO: buyers of decorative wood veneer search for "wood veneer", "designer/
+// decorative veneer" and use-cases (wall panelling, cabinetry, furniture) — not
+// "hybrid veneer" alone, which surfaces dental results. So the title leads with
+// "Designer Wood Veneer" and the description carries the use-cases. No product
+// count in the copy: it read "74" while 23 designs sat in draft, and would shift
+// publicly on every publish (customer directive, 2026-08-12).
 export const metadata = pageMetadata({
   // The root layout applies `template: '%s · Woodlark'`, so the brand is
   // appended automatically — repeating it here produced "… | Woodlark · Woodlark".
-  title: 'Hybrid Veneer Collection — 80+ Designs',
+  title: 'Designer Wood Veneer Collection',
   description:
-    'Browse the full Woodlark hybrid veneer collection — 80+ designs in 8x4 and 10x4 sheets, engineered to repeat tone and grain consistently at project scale.',
+    'Explore the Woodlark hybrid wood veneer collection — decorative veneer sheets for wall panelling, cabinetry and furniture, engineered to repeat tone and grain at project scale, in 8×4 and 10×4.',
   path: '/collection',
 });
 
@@ -26,18 +28,15 @@ export default async function CollectionPage() {
       <section className="container-x pt-24 md:pt-32 pb-12">
         <div className="text-[10px] uppercase tracking-[0.3em] text-brass mb-5">The Collection</div>
         <h1 className="font-display text-5xl md:text-7xl text-walnut-deep leading-[0.95] max-w-4xl text-balance">
-          {/* The h1 carries the target term ("hybrid veneer") — after the title
-              tag it's the strongest on-page ranking signal, and it was previously
-              spending that weight on the word "tones", which nobody searches for.
-              The count is static by customer directive (2026-08-12): deriving it
-              from the product list made it read "74" while 23 designs sat in draft
-              awaiting photography, and it would shift publicly on every publish. */}
-          80+ hybrid veneer collection.
+          {/* The h1 is the strongest on-page ranking signal after the title, so it
+              carries the searchable term ("wood veneer") and Woodlark's core promise
+              (consistency), rather than a product count that shifts on every publish. */}
+          Designer wood veneer, engineered to repeat.
         </h1>
         <p className="mt-6 max-w-2xl text-muted-foreground leading-relaxed">
-          Woodlark hybrid veneer is engineered to repeat — the same tone, the same grain, sheet
-          after sheet. Browse all 80+ hybrid veneer designs below in 8x4 and 10x4, or search by
-          product code.
+          The depth and grain of real wood, reproduced with total consistency — the same tone,
+          the same figure, sheet after sheet. Decorative veneer for wall panelling, cabinetry and
+          fine furniture, in 8×4 and 10×4. Search by product code or browse the collection below.
         </p>
         <div className="mt-10">
           <ProductSearch products={views} variant="inline" />

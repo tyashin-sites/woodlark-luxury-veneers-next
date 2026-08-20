@@ -12,11 +12,10 @@ import { siteConfig, siteUrl } from '@/lib/site';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Luxury Hybrid Veneer | Woodlark',
-  description:
-    // Exactly the customer's brand line — the share card's title is already "Woodlark",
-    // so the description carries the line on its own.
-    `${siteConfig.tagline}. ${siteConfig.description}`,
+  // `absolute` so the layout's "· Woodlark" template isn't appended on top of a
+  // title that already ends in the brand. Leads with the searchable category term.
+  title: { absolute: 'Woodlark — Luxury Hybrid Wood Veneer' },
+  description: siteConfig.seoDescription,
   alternates: { canonical: siteUrl('/') },
   openGraph: { url: siteUrl('/'), images: [siteConfig.ogImage] },
 };
@@ -39,7 +38,7 @@ export default async function HomePage() {
         <HeroCarousel />
         <div className="container-x relative pb-20 pt-32 md:pb-28 md:pt-40">
           <div className="text-[11px] uppercase tracking-[0.4em] text-brass mb-6">
-            Hybrid Veneer
+            Hybrid Wood Veneer
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] text-cream max-w-4xl text-balance">
             Embracing Italian excellence,<br />
@@ -98,8 +97,8 @@ export default async function HomePage() {
         <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-brass mb-3">The Collection</div>
-            {/* Count-agnostic on purpose — the catalogue grows; a hardcoded number goes stale. */}
-            <h2 className="font-display text-4xl md:text-5xl text-walnut-deep">Many tones. One language.</h2>
+            {/* Benefit + keyword, not a count — the catalogue grows and a number goes stale. */}
+            <h2 className="font-display text-4xl md:text-5xl text-walnut-deep">Wood veneer designs, true to the last sheet.</h2>
           </div>
           <Link
             href="/collection"

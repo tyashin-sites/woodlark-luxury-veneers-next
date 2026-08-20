@@ -7,10 +7,17 @@ import type { Metadata } from 'next';
 export const siteConfig = {
   name: 'Woodlark',
   // Brand line, per the customer (2026-07-03). `${tagline}. ${description}` composes the
-  // canonical one-liner used in meta/OG/footer:
+  // human-facing one-liner shown in the footer:
   //   "Embracing Italian excellence. A Legacy of More Than 30 Years. A Future of Fine Veneers."
   tagline: 'Embracing Italian excellence',
   description: 'A Legacy of More Than 30 Years. A Future of Fine Veneers.',
+  // Search/meta one-liner — distinct from the brand line above. The brand line reads
+  // beautifully but is un-searchable; buyers of decorative wood veneer look for "wood
+  // veneer", "decorative veneer sheets", and use-cases (wall panelling, cabinetry,
+  // furniture), NOT "hybrid veneer" on its own (which surfaces dental results). This
+  // line anchors those terms for titles/descriptions/OG. See also the h1s on each page.
+  seoDescription:
+    'Woodlark makes luxury hybrid wood veneer — decorative veneer sheets with the grain of real wood, engineered to repeat across wall panelling, cabinetry and furniture. Italian design, over 30 years, in 8×4 and 10×4.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'woodlarkveneer.com',
   whatsappNumber: '918287903410',
   whatsappDisplay: '+91 82879 03410',

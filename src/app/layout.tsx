@@ -9,14 +9,14 @@ import { getBlogHasPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl('/')),
-  title: { default: 'Woodlark — Hybrid Veneer', template: '%s · Woodlark' },
-  description: `${siteConfig.tagline}. ${siteConfig.description}`,
+  title: { default: 'Woodlark — Luxury Hybrid Wood Veneer', template: '%s · Woodlark' },
+  description: siteConfig.seoDescription,
   authors: [{ name: 'Woodlark' }],
   openGraph: {
     type: 'website',
     siteName: 'Woodlark',
-    title: 'Woodlark — Hybrid Veneer',
-    description: `${siteConfig.tagline}. ${siteConfig.description}`,
+    title: 'Woodlark — Luxury Hybrid Wood Veneer',
+    description: siteConfig.seoDescription,
     images: [siteConfig.ogImage],
   },
   twitter: { card: 'summary_large_image' },

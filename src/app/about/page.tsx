@@ -2,9 +2,11 @@ import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { pageMetadata } from '@/lib/site';
 
 export const metadata = pageMetadata({
-  title: 'Our Story — Woodlark',
+  // Just "Our Story" — the layout template appends "· Woodlark", so keeping the
+  // brand in the title too produced "Our Story — Woodlark · Woodlark".
+  title: 'Our Story',
   description:
-    'A legacy of more than 30 years, inspired by Italy. Woodlark makes hybrid veneer engineered for consistency, scale and modern interiors.',
+    'A legacy of more than 30 years, inspired by Italy. Woodlark makes luxury hybrid wood veneer — decorative veneer engineered for consistency and scale across wall panelling, cabinetry and furniture.',
   path: '/about',
 });
 
