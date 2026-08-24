@@ -1,5 +1,6 @@
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
+import { CatalogueDownload } from '@/components/CatalogueDownload';
 import { listProducts, listCategories, toView, sortByCode } from '@/lib/api';
 import { pageMetadata } from '@/lib/site';
 
@@ -38,8 +39,9 @@ export default async function CollectionPage() {
           the same figure, sheet after sheet. Decorative veneer for wall panelling, cabinetry and
           fine furniture, in 8×4 and 10×4. Search by product code or browse the collection below.
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center">
           <ProductSearch products={views} variant="inline" />
+          <CatalogueDownload tone="light" className="shrink-0" />
         </div>
       </section>
 

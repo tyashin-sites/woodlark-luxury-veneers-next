@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import { USPSection } from '@/components/USPSection';
 import { HybridVeneerIntro } from '@/components/HybridVeneerIntro';
+import { CatalogueDownload } from '@/components/CatalogueDownload';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -65,6 +66,7 @@ export default async function HomePage() {
             >
               View the Catalogue
             </a>
+            <CatalogueDownload tone="dark" />
             <WhatsAppButton label="Enquire on WhatsApp" variant="ghost" />
           </div>
         </div>
