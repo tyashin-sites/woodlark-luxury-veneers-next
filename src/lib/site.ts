@@ -63,6 +63,7 @@ export const siteConfig = {
     // now lives, unlinked, at /legacy-catalog.)
     { label: 'Collection', href: '/collection' },
     { label: 'Catalogue', href: '/catalogue/', external: true },
+    { label: 'Visualiser', href: '/visualiser' },
     { label: 'Our Story', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ],
