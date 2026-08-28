@@ -106,14 +106,21 @@ export function VisualiserGrid({
     [accountId],
   );
 
-  // Escape closes the experience.
+  // Escape closes the experience, and so does the viewer's own × — it
+  // dispatches 'hideThridifyIFrame' on the document; without this listener
+  // the viewer would close internally and leave our scrim stranded.
   useEffect(() => {
     if (!activePid) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
     };
+    const onViewerClose = () => close();
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    document.addEventListener('hideThridifyIFrame', onViewerClose);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('hideThridifyIFrame', onViewerClose);
+    };
   }, [activePid, close]);
 
   return (
@@ -184,14 +191,19 @@ export function VisualiserGrid({
               </button>
             </div>
           )}
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Close 3D visualiser"
-            className="absolute top-4 right-4 z-10 bg-cream/90 text-walnut-deep w-10 h-10 flex items-center justify-center text-xl leading-none shadow-sm"
-          >
-            ×
-          </button>
+          {/* Escape hatch for the states where the viewer's own close doesn't
+              exist yet (loading/error). Once live, the viewer's × takes over —
+              rendering ours too stacked two crosses in the same corner. */}
+          {status !== 'live' && (
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Close 3D visualiser"
+              className="absolute top-4 right-4 z-10 bg-cream/90 text-walnut-deep w-10 h-10 flex items-center justify-center text-xl leading-none shadow-sm"
+            >
+              ×
+            </button>
+          )}
         </div>
       )}
     </>
