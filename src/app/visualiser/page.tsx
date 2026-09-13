@@ -16,6 +16,21 @@ const THRIDIFY_ACCOUNT_ID =
 
 const MODELS_BASE = 'https://models.thridify.com';
 
+// Fresh, locally-hosted space posters — override the poster field in
+// experiences.json, whose publish-time snapshots showed stale renders with the
+// green hotspot-highlight edges baked in (and, on the furniture scenes, the
+// veneer texture's WOODLARK watermark at the flanks). Captured 2026-09-13 from
+// the live preview links via the model-viewer frame (clean, no chrome), then
+// centre-cropped to 4:3 with the watermarked edges removed. Keyed by pid; any
+// experience not listed here keeps whatever experiences.json provides.
+const POSTER_OVERRIDES: Record<string, string> = {
+  corridor: '/visualiser/corridor.jpg',
+  'l-kitchen': '/visualiser/l-kitchen.jpg',
+  'sw-kitchen': '/visualiser/sw-kitchen.jpg',
+  tvunit: '/visualiser/tvunit.jpg',
+  wardrobe: '/visualiser/wardrobe.jpg',
+};
+
 /**
  * Space labels arrive as publish-time identifiers ("L_Shaped Kitchen",
  * "Tv Unit", "corridor"). Render them like a person wrote them.
@@ -48,7 +63,7 @@ async function getSpaces(): Promise<SpaceExperience[]> {
         pid: e.pid,
         previewId: e.previewId,
         label: prettifyLabel(e.label || e.pid),
-        poster: e.poster,
+        poster: POSTER_OVERRIDES[e.pid] ?? e.poster,
       }));
   } catch {
     return [];
