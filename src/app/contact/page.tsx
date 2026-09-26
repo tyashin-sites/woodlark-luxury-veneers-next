@@ -1,4 +1,4 @@
-import { MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { siteConfig, pageMetadata } from '@/lib/site';
 
@@ -45,12 +45,10 @@ export default function ContactPage() {
               {siteConfig.whatsappDisplay}
             </a>
           </ContactCard>
-          {/* HIDDEN 2026-07-01: email card hidden — the team isn't monitoring the inbox
-              right now. TO RESTORE: uncomment this and re-add `Mail` to the lucide import.
+          {/* RESTORED 2026-09-26: the inbox is monitored again (sales@woodlarkveneer.com). */}
           <ContactCard icon={<Mail size={18} />} label="Email">
             <a href={`mailto:${siteConfig.email}`} className="hover:text-brass">{siteConfig.email}</a>
           </ContactCard>
-          */}
           <ContactCard icon={<Phone size={18} />} label="For any queries">
             <a href={`https://wa.me/${siteConfig.queriesPhone}`} target="_blank" rel="noopener noreferrer" className="hover:text-brass">
               {siteConfig.queriesPhoneDisplay}

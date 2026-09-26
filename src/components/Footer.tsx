@@ -61,14 +61,12 @@ export function Footer({ blogHasPosts = false }: { blogHasPosts?: boolean }) {
                 Queries · {siteConfig.queriesPhoneDisplay}
               </a>
             </div>
-            {/* HIDDEN 2026-07-01: email hidden — team isn't monitoring the inbox right now.
-                TO RESTORE: uncomment this block.
+            {/* RESTORED 2026-09-26: the inbox is monitored again (sales@woodlarkveneer.com). */}
             <div>
               <a href={`mailto:${siteConfig.email}`} className="hover:text-brass transition-colors">
                 {siteConfig.email}
               </a>
             </div>
-            */}
           </div>
         </div>
       </div>

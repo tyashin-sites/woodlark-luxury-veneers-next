@@ -51,8 +51,8 @@ const orgJsonLd = {
   '@type': 'Organization',
   name: 'Woodlark',
   url: siteUrl('/'),
-  // HIDDEN 2026-07-01: email omitted from structured data — inbox isn't monitored right now.
-  // email: siteConfig.email,
+  // RESTORED 2026-09-26: inbox monitored again — sales@woodlarkveneer.com.
+  email: siteConfig.email,
   telephone: `+${siteConfig.whatsappNumber}`,
   address: {
     '@type': 'PostalAddress',
