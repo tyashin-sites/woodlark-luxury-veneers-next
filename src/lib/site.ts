@@ -65,6 +65,8 @@ export const siteConfig = {
     { label: 'Catalogue', href: '/catalogue/', external: true },
     { label: 'Visualiser', href: '/visualiser' },
     { label: 'Our Story', href: '/about' },
+    // ADDED 2026-10-11: the FAQ hub (src/lib/faq.ts is the single content source).
+    { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' },
   ],
 };

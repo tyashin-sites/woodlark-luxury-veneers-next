@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { siteConfig, pageMetadata } from '@/lib/site';
@@ -37,6 +38,13 @@ export default function ContactPage() {
           <div className="mt-10">
             <WhatsAppButton size="lg" label={`Chat — ${siteConfig.whatsappDisplay}`} />
           </div>
+          <p className="mt-8 text-sm text-muted-foreground">
+            Sizes, samples, dealership, delivery?{' '}
+            <Link href="/faq" className="text-walnut-deep border-b border-walnut-deep/40 pb-0.5 hover:text-brass hover:border-brass transition-colors">
+              Most questions are answered in our FAQ
+            </Link>
+            .
+          </p>
         </div>
 
         <div className="lg:col-span-6 space-y-6">

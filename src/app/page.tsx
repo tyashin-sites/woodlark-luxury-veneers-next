@@ -4,6 +4,7 @@ import { HeroCarousel } from '@/components/HeroCarousel';
 import { USPSection } from '@/components/USPSection';
 import { HybridVeneerIntro } from '@/components/HybridVeneerIntro';
 import { CatalogueDownload } from '@/components/CatalogueDownload';
+import { FaqTeaser } from '@/components/FaqTeaser';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductSearch } from '@/components/ProductSearch';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
@@ -92,6 +93,10 @@ export default async function HomePage() {
       {/* What hybrid veneer is — defined on the home page so a first-time visitor
           understands the material before browsing tones. */}
       <HybridVeneerIntro />
+
+      {/* The four questions a first-time specifier asks, linking into the /faq hub
+          (which owns the FAQPage JSON-LD — none is emitted here). */}
+      <FaqTeaser />
 
       {/* RESTORED 2026-08-11: Featured-Collection section is back — real product
           photography landed. */}

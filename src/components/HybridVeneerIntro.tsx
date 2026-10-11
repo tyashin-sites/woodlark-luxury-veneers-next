@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 // A short, reusable explainer of what hybrid veneer is. Shown on the home page
 // and on every product page so the material is defined wherever a visitor lands.
 // British/Indian spelling throughout, to match the rest of the site.
@@ -40,6 +42,12 @@ export function HybridVeneerIntro({
             <p key={para.slice(0, 24)}>{para}</p>
           ))}
         </div>
+        <Link
+          href="/faq"
+          className="mt-8 inline-block text-xs uppercase tracking-[0.25em] text-walnut-deep border-b border-walnut-deep pb-1 hover:text-brass hover:border-brass transition-colors"
+        >
+          Questions about hybrid veneer? Read the FAQ →
+        </Link>
       </div>
     </section>
   );
