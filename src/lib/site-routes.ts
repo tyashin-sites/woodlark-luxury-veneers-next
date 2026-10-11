@@ -36,7 +36,12 @@ export type ChangeFrequency =
   | 'never';
 
 export interface SiteRoute {
-  /** Root-relative path, always starting with `/`, no trailing slash (except `/`). */
+  /**
+   * Root-relative path, always starting with `/`, no trailing slash (except `/`
+   * and `/catalogue/` — the static bundle's index; the bare `/catalogue` is a
+   * 307 to it, and a redirecting sitemap URL is a GSC "page with redirect" that
+   * the platform's discovery crawler also prunes).
+   */
   path: string;
   priority: number;
   changeFrequency: ChangeFrequency;
@@ -50,7 +55,7 @@ export interface SiteRoute {
 const STATIC_ROUTES: SiteRoute[] = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/collection', priority: 0.9, changeFrequency: 'weekly' },
-  { path: '/catalogue', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/catalogue/', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/visualiser', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/faq', priority: 0.7, changeFrequency: 'monthly' },
