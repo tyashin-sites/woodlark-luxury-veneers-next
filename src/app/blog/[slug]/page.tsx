@@ -12,7 +12,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
-  const title = `${post.seo?.metaTitle || post.title} · Woodlark`;
+  // The root layout's title template already appends " · Woodlark"; adding it
+  // here too produced "… · Woodlark · Woodlark" on every post (seen 2026-11-04).
+  const title = post.seo?.metaTitle || post.title;
   const description = post.seo?.metaDescription || post.excerpt || siteConfig.tagline;
   const image = post.seo?.ogImage || post.featuredImage;
   return {
